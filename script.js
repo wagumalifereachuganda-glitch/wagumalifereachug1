@@ -1,9 +1,9 @@
 // Banner slider logic
 const bannerImages = [
-    'images/7.jpg',
-    'images/5.jpg',
-    'images/9.jpg',
-    'images/8.jpg'
+    '7.jpg',
+    '5.jpg',
+    '9.jpg',
+    '8.jpg'
 ];
 
 let currentBanner = 0;
@@ -60,4 +60,5 @@ function showPaymentDetails(method) {
   };
   document.getElementById('paymentDetails').style.display = 'block';
   document.getElementById('paymentDetails').innerHTML = details[method];
+
 }
