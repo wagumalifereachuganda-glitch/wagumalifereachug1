@@ -48,6 +48,23 @@ document.addEventListener('DOMContentLoaded', function() {
         showBannerImage(currentBanner);
         startBannerAutoSlide();
     };
+
+    const readMoreLink = document.getElementById('about-read-more');
+    if (readMoreLink) {
+        readMoreLink.addEventListener('click', function(event) {
+            event.preventDefault();
+            const more = document.getElementById('about-more');
+            if (more) {
+                if (more.style.display === 'none' || more.style.display === '') {
+                    more.style.display = 'block';
+                    readMoreLink.textContent = 'Read less';
+                } else {
+                    more.style.display = 'none';
+                    readMoreLink.textContent = 'Read more';
+                }
+            }
+        });
+    }
 });
 
 
