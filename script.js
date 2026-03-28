@@ -3,6 +3,7 @@ const bannerImages = [
     '7.jpg',
     '5.jpg',
     '9.jpg',
+    'ds6.jpg.jpeg',
     '8.jpg'
 ];
 
