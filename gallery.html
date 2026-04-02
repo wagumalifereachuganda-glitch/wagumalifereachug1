@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Waguma Life Outreach UG</title>
+        <link rel="icon" type="image/png" href="logo.png">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+:root {
+  --green: #0f7b3f;
+  --red: #c62828;
+  --light: #f4f4f4;
+  --dark: #222;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: var(--light);
+  color: var(--dark);
+}
+
+/* Header */
+header {
+  background: linear-gradient(90deg, var(--green), var(--red));
+  color: white;
+  text-align: center;
+  padding: 1.5rem;
+}
+
+header h1 {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+/* Gallery Grid */
+.gallery {
+  display: grid;
+  gap: 15px;
+  padding: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+/* Images */
+.gallery img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.95);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: 95%;
+  max-height: 80%;
+  border-radius: 10px;
+}
+
+/* Buttons */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 35px;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 10px;
+  background: var(--green);
+  color: white;
+}
+
+/* 📱 Mobile Optimization */
+@media (max-width: 768px) {
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gallery img {
+    height: 180px;
+  }
+
+  .nav-btn {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery img {
+    height: 200px;
+  }
+}
+
+.gallery img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, z-index 0.3s;
+}
+
+.gallery img:hover {
+  transform: scale(1.15); /* bigger zoom */
+  z-index: 10;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+</style>
+</head>
+
+<body>
+
+ <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="index.html"><img style="width: 40px; height:40px; margin-left:15px;" src="logo.png"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active" href="index.html">Home</a>
+
+          <a class="nav-item nav-link " href="#photo-gallery">Our PhotoGallery</a>
+          
+        </div>
+        <button type="button" class="btn btn-success" style="margin-left: 60%;"><a href="tel:+256703204351"><i class="fa-solid fa-phone"></i></a></button>
+        <!-- DONATE Modal BUTTON -->
+   
+
+      </div>
+    </nav>
+
+<div class="gallery" id="gallery"></div>
+
+<div class="lightbox" id="lightbox">
+  <span class="close" id="closeBtn">&times;</span>
+  <span class="nav-btn prev" id="prevBtn">&#10094;</span>
+  <img id="lightboxImg">
+  <span class="nav-btn next" id="nextBtn">&#10095;</span>
+</div>
+
+<footer>
+  <p>© 2026 Gallery</p>
+</footer>
+
+<script>
+const gallery = document.getElementById("gallery");
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightboxImg");
+
+let currentIndex = 0;
+const images = [];
+
+// Load images dynamically
+for (let i = 1; i <= 36; i++) {
+  const src = `ds${i}.jpg.jpeg`;
+  images.push(src);
+
+  const img = document.createElement("img");
+  img.src = src;
+  img.loading = "lazy";
+
+  img.onclick = () => {
+    currentIndex = i - 1;
+    showImage();
+  };
+
+  gallery.appendChild(img);
+}
+
+function showImage() {
+  lightbox.classList.add("active");
+  lightboxImg.src = images[currentIndex];
+}
+
+function nextImage() {
+  currentIndex = (currentIndex + 1) % images.length;
+  showImage();
+}
+
+function prevImage() {
+  currentIndex = (currentIndex - 1 + images.length) % images.length;
+  showImage();
+}
+
+// Buttons
+document.getElementById("nextBtn").onclick = nextImage;
+document.getElementById("prevBtn").onclick = prevImage;
+document.getElementById("closeBtn").onclick = () => lightbox.classList.remove("active");
+
+// Keyboard support
+document.addEventListener("keydown", (e) => {
+  if (!lightbox.classList.contains("active")) return;
+
+  if (e.key === "ArrowRight") nextImage();
+  if (e.key === "ArrowLeft") prevImage();
+  if (e.key === "Escape") lightbox.classList.remove("active");
+});
+
+// Touch swipe (mobile)
+let startX = 0;
+
+lightbox.addEventListener("touchstart", (e) => {
+  startX = e.touches[0].clientX;
+});
+
+lightbox.addEventListener("touchend", (e) => {
+  let endX = e.changedTouches[0].clientX;
+
+  if (startX - endX > 50) nextImage();
+  if (endX - startX > 50) prevImage();
+});
+
+// Close on background click
+lightbox.onclick = (e) => {
+  if (e.target === lightbox) {
+    lightbox.classList.remove("active");
+  }
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const img = entry.target;
+      img.src = img.dataset.src;
+      observer.unobserve(img);
+    }
+  });
+});
+</script>
+
+</body>
+</html>

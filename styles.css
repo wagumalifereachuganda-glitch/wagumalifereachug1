@@ -3,6 +3,14 @@ body {
 	width: 100%;
 }
 
+.mobile-title{
+    display: none;
+    font-size: 0.5rem;
+    font-weight: 100;
+    color: #008000;
+    
+}
+
               \\this is the top bar of the site
 .top{
 	display: flex;
@@ -16,15 +24,18 @@ body {
 		color: black;
 		margin-top: 3px;}
 .top1{
-		margin-top: 3px;
-
-	margin-left: 4px;
-	display: flex;
-	gap: 20px;
-
-
+	 margin-top: 3px;
+	 margin-left: 4px;
+	 display: flex;
+	 gap: 20px;
 }
 
+.top1 a{
+     text-decoration: none;
+     color: #0f7b3f; /* deep green */    letter-spacing: 0.5px;
+     underline: none;
+   
+}
 .top2{
    margin-top: 3px;
 	margin-left: 70%;
@@ -43,7 +54,8 @@ body {
 
 \\nav bar details
 .btn btn-success{
-	margin-left: 40px;
+	/*margin-left: 40px;*/
+    margin-right: 2px;
 }
 
 /* Responsive: Show .top as block and stack contents vertically on small screens */
@@ -52,6 +64,12 @@ body {
         display: none !important;
         
     }
+    .mobile-title {
+    display: block;
+    font-size:10px;
+    margin-left: 5px;
+    font-weight: bold;
+  }
     }
 
 /* Banner Styles */
@@ -145,6 +163,11 @@ body {
         height: 32px;
         font-size: 1.1rem;
     }
+    .mobile-title {
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+  }
 }
 
 /* Banner logo beside title */
@@ -305,6 +328,11 @@ body {
     .causes-header p {
         font-size: 0.98rem;
     }
+    .mobile-title {
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+  }
 }
 
 /* Contact Us Section Styles */
@@ -446,12 +474,25 @@ body {
     .contact-social-label {
         font-size: 0.98rem;
     }
+    .mobile-title {
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+  }
 }
 
-/* Improved Navbar for Mobile */
+
 .navbar-nav {
     align-items: center;
     gap: 18px;
+    margin-right:-40px;
+    white-space: nowrap; /* prevents breaking into two lines */
+}
+
+
+.navbar-nav a:hover {
+    color:red;
+  font-size: 20px;
 }
 
 @media (max-width: 991px) {
@@ -467,6 +508,7 @@ body {
         align-items: center; /* Center all children horizontally */
     }
     .navbar-nav {
+        
         flex-direction: column;
         gap: 12px;
         width: 100%;
@@ -496,6 +538,19 @@ body {
         border-radius: 8px;
         text-align: center;
         align-self: center; /* Center the button in the collapse */
+    }
+    .mobile-title {
+    display: block;
+    font-size: 17px;
+    font-weight: bold;
+    margin-left: 10px;
+    align-self: start ;
+    position: absolute;
+     left: 50px;
+     top: 19px;
+    }
+    .navbar-brand img{
+        margin-left: 1px;
     }
 }
 

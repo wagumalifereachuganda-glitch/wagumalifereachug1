@@ -1,10 +1,9 @@
 // Banner slider logic
 const bannerImages = [
-    '7.jpg',
-    '5.jpg',
-    '9.jpg',
-    'ds6.jpg.jpeg',
-    '8.jpg'
+    'ds34.jpg.jpeg',
+    'ds10.jpg.jpeg',
+    'ds4.jpg.jpeg',
+    'ds30.jpg.jpeg',
 ];
 
 let currentBanner = 0;
@@ -52,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const readMoreLink = document.getElementById('about-read-more');
     if (readMoreLink) {
-        readMoreLink.addEventListener('click', function(event) {
+        readMoreLsink.addEventListener('click', function(event) {
             event.preventDefault();
             const more = document.getElementById('about-more');
             if (more) {
