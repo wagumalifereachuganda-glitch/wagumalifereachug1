@@ -11,8 +11,9 @@ body {
     
 }
 .embedpost{
-	dispay :flex;
+	dispay : flex;
 	align: centre;
+	justify-content: center;
 	
 }
 
