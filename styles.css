@@ -880,6 +880,7 @@ body {
 	.embedpost{
 		flex-direction: column;
 		display: flex;
+		margin-bottom:4px;
 	}
 }
 
