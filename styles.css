@@ -877,9 +877,9 @@ body {
     .blog-header p {
         font-size: 0.98rem;
     }
-	/*.embedpost{
+	.embedpost{
 		flex-direction: column;
 		display: flex;
-	}*/
+	}
 }
 
