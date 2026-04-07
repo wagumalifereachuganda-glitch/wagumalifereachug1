@@ -4,6 +4,7 @@ body {
 }
 
 .mobile-title{
+	display: flex;
     font-size: 0.5rem;
     font-weight: 100;
     color: #008000;
