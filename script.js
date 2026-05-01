@@ -67,6 +67,50 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// Show More / Show Less Functionality on the causes section for mobile devices
+  document.addEventListener('DOMContentLoaded', function() {
+    const causesCards = document.querySelector('.causes-cards');
+    const isMobile = window.innerWidth <= 640;
+
+    if (isMobile) {
+      // Create wrapper and button
+      const wrapper = document.createElement('div');
+      wrapper.className = 'show-btn-wrapper';
+      
+      const showMoreBtn = document.createElement('button');
+      showMoreBtn.className = 'show-more-btn';
+      showMoreBtn.textContent = '+ Show More Causes';
+      showMoreBtn.setAttribute('aria-expanded', 'false');
+      showMoreBtn.setAttribute('type', 'button');
+      
+      wrapper.appendChild(showMoreBtn);
+      causesCards.appendChild(wrapper);
+
+      let isExpanded = false;
+
+      showMoreBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        isExpanded = !isExpanded;
+        
+        if (isExpanded) {
+          causesCards.classList.add('show-all');
+          showMoreBtn.textContent = '- Show Less Causes';
+          showMoreBtn.setAttribute('aria-expanded', 'true');
+          showMoreBtn.style.background = 'linear-gradient(135deg, #c62828 0%, #a01e1e 100%)';
+        } else {
+          causesCards.classList.remove('show-all');
+          showMoreBtn.textContent = '+ Show More Causes';
+          showMoreBtn.setAttribute('aria-expanded', 'false');
+          showMoreBtn.style.background = 'linear-gradient(135deg, #0f7b3f 0%, #0d5f32 100%)';
+          
+          // Smooth scroll to the top of the section
+          setTimeout(() => {
+            document.getElementById('causes').scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 200);
+        }
+      });
+    }
+  });
 
 //modal code
 function showPaymentDetails(method) {

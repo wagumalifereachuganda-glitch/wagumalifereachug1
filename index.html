@@ -36,7 +36,7 @@
         <div class="navbar-nav">
           <a class="nav-item nav-link active" href="index.html">Home</a>
           <a class="nav-item nav-link" href="#about-us">About us</a>
-          <a class="nav-item nav-link" href="#blog">Blog</a>
+          <a class="nav-item nav-link" href="#realblog">Blog</a>
           <a class="nav-item nav-link " href="#contact-us">Contact us</a>
           <a class="nav-item nav-link " href="gallery.html">Gallery</a>
         </div>
@@ -77,79 +77,128 @@
 <!-- Causes Section Start -->
 <section id="causes">
   <div class="causes-header">
-    <h2>Explore our latest causes that we work on </h2>
+    <h2>Explore our latest causes that we work on</h2>
     <p>Discover our core initiatives making a difference in Ugandan communities.</p>
   </div>
   <div class="causes-cards">
+    
+    <!-- Medical Camps Card -->
     <div class="cause-card">
+      <div class="cause-icon-badge">
+        <i class="fa-solid fa-hospital"></i>
+      </div>
       <img src="12.jpg" alt="Medical Camps">
       <div class="cause-card-body">
         <h3>Free Medical Camps</h3>
         <p>Organizing free medical camps for rural and underserved communities to improve access to healthcare.</p>
       </div>
     </div>
+
+    <!-- Youth Empowerment Card -->
     <div class="cause-card">
+      <div class="cause-icon-badge">
+        <i class="fa-solid fa-person-hiking"></i>
+      </div>
       <img src="3.jpg" alt="Youth Empowerment">
       <div class="cause-card-body">
         <h3>Youth Empowerment</h3>
         <p>Conducting youth empowerment programs, especially for the boy child, to foster leadership and growth.</p>
       </div>
     </div>
+
+    <!-- Humanitarian Support Card -->
     <div class="cause-card">
+      <div class="cause-icon-badge">
+        <i class="fa-solid fa-hand-holding-heart"></i>
+      </div>
       <img src="9.jpg" alt="Humanitarian Support">
       <div class="cause-card-body">
         <h3>Humanitarian Support</h3>
         <p>Offering humanitarian support through food, clothing, and educational materials for those in need.</p>
       </div>
     </div>
+
+    <!-- Culture of Giving Card -->
     <div class="cause-card">
+      <div class="cause-icon-badge">
+        <i class="fa-solid fa-gift"></i>
+      </div>
       <img src="8.jpg" alt="Culture of Giving">
       <div class="cause-card-body">
         <h3>Culture of Giving</h3>
         <p>Promoting generosity by transforming celebrations into acts of kindness that positively impact communities.</p>
       </div>
     </div>
+
+    <!-- Building Partnerships Card -->
     <div class="cause-card">
+      <div class="cause-icon-badge">
+        <i class="fa-solid fa-handshake"></i>
+      </div>
       <img src="7.jpg" alt="Partnerships">
       <div class="cause-card-body">
         <h3>Building Partnerships</h3>
         <p>Building partnerships with medical, faith-based, and community organizations for greater impact.</p>
       </div>
     </div>
+
+    <!-- Public Awareness Card -->
     <div class="cause-card">
+      <div class="cause-icon-badge">
+        <i class="fa-solid fa-bullhorn"></i>
+      </div>
       <img src="ds12.jpg.jpeg" alt="Public Awareness">
       <div class="cause-card-body">
         <h3>Public Awareness</h3>
         <p>Promoting public awareness of preventable diseases and mental health through outreach and education.</p>
       </div>
     </div>
+
+    <!-- Mentorship Card -->
     <div class="cause-card">
+      <div class="cause-icon-badge">
+        <i class="fa-solid fa-users"></i>
+      </div>
       <img src="ds36.jpg.jpeg" alt="Mentorship">
       <div class="cause-card-body">
         <h3>Mentorship</h3>
-        <p>Mentoring volunteers and youth leaders who share the organization’s vision for a brighter future.</p>
+        <p>Mentoring volunteers and youth leaders who share the organization's vision for a brighter future.</p>
       </div>
     </div>
+
   </div>
 </section>
 <!-- Causes Section End -->
 
-<!-- Add this blog section after your causes section in index.html -->
-<section id="blog">
+
+<!--/* FIRST BLOG*-->
+
+<div id="realblog" class="blogpost" style="margin-bottom: 0;">
+  <h3>Latest Blog Post</h3>
+  <p>Click below to read more about this article.</p>
+  <a href="https://katoemmanganda.blogspot.com/2026/04/kato.html" target="_blank">
+    Read Full Post →
+  </a>
+</div>
+
+   <!-- Blog Section Start -->
+
+<section id="blog" style="margin-bottom: 0;">
   <div class="blog-header">
     <h2>Latest From Our Outreach Blog</h2>
     <p>Stories, updates, and highlights from our recent charity projects and medical camps.</p>
   </div>
+
   <div class="blog-cards">
     <article class="blog-card">
       <div class="blog-img-wrap">
-        <img src="event1.jpg" alt="Mpigi Medical Camp - Community Screening">
+        <img src="event1.jpg" alt="Mpigi Medical Camp - Community Screening"
+          onerror="this.parentElement.innerHTML='<div class=\'blog-img-placeholder\'><i class=\'fa-solid fa-heart-pulse\'></i></div>'">
       </div>
       <div class="blog-body">
+        <span class="blog-card-tag-top">Medical Camp</span>
         <h3>Mpigi Medical Camp: Screening & Support</h3>
-        <p>
-          On November 2, 2025, Waguma Life Outreach UG and Elsa Africa hosted a medical camp in Nakilebe (Kololo-Kyetabya), Mpigi. Community members received free screening for TB, sickle cell, malaria, dental, and cancer. Our team also distributed essential items including clothes, school fees, shelter, soap, sanitary towels, sugar, and Maam Kits. The event fostered hope and improved health for many families.
-        </p>
+        <p>On November 2, 2025, Waguma Life Outreach UG and Elsa Africa hosted a medical camp in Nakilebe, Mpigi. Community members received free screening for TB, sickle cell, malaria, dental, and cancer — plus essential items including clothes, school fees, shelter, soap, and Maam Kits.</p>
         <ul class="blog-tags">
           <li>Medical Outreach</li>
           <li>Community Impact</li>
@@ -159,17 +208,19 @@
           <span><i class="fa-solid fa-calendar-days"></i> 02/11/2025</span>
           <span><i class="fa-solid fa-location-dot"></i> Nakilebe, Mpigi</span>
         </div>
+        <a href="#" class="blog-read-more">Read full story <i class="fa-solid fa-arrow-right"></i></a>
       </div>
     </article>
+
     <article class="blog-card">
       <div class="blog-img-wrap">
-        <img src="event2.jpg" alt="Volunteer Engagement & Mentorship">
+        <img src="event2.jpg" alt="Volunteer Engagement & Mentorship"
+          onerror="this.parentElement.innerHTML='<div class=\'blog-img-placeholder\'><i class=\'fa-solid fa-hands-holding-child\'></i></div>'">
       </div>
       <div class="blog-body">
+        <span class="blog-card-tag-top">Youth & Volunteers</span>
         <h3>Empowering Youth & Volunteers</h3>
-        <p>
-          Our outreach events are more than medical camps—they are platforms for mentorship and youth empowerment. Volunteers engage with local children, providing guidance, distributing educational materials, and inspiring a culture of giving. Through collaboration with partners and the Ministry of Health, we continue to build a healthier, more hopeful Uganda.
-        </p>
+        <p>Our outreach events are more than medical camps — they are platforms for mentorship and youth empowerment. Volunteers engage with local children, distributing educational materials and inspiring a culture of giving. Through collaboration with the Ministry of Health, we build a healthier Uganda.</p>
         <ul class="blog-tags">
           <li>Youth Empowerment</li>
           <li>Volunteer Stories</li>
@@ -179,56 +230,71 @@
           <span><i class="fa-solid fa-calendar-days"></i> 02/11/2025</span>
           <span><i class="fa-solid fa-users"></i> Volunteers & Partners</span>
         </div>
+        <a href="#" class="blog-read-more">Read full story <i class="fa-solid fa-arrow-right"></i></a>
       </div>
     </article>
   </div>
-  <div class="embedpost" style="display: flex;">
-      <blockquote class="twitter-tweet"><p lang="en" dir="ltr">It&#39;s a Good Friday to reflect on the suffering of Christ for all Mankind, do you believe and accept his sacrifice he paid for you? <a href="https://twitter.com/WagumaAggrey?ref_src=twsrc%5Etfw">@WagumaAggrey</a> <a href="https://twitter.com/hashtag/HappyGoodFriday?src=hash&amp;ref_src=twsrc%5Etfw">#HappyGoodFriday</a> <a href="https://t.co/V3jsIQnVQy">pic.twitter.com/V3jsIQnVQy</a></p>&mdash; Waguma Life Reach Uganda (@lifereachUg) <a href="https://twitter.com/lifereachUg/status/2040003820294382061?ref_src=twsrc%5Etfw">April 3, 2026</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-      <blockquote class="twitter-tweet"><p lang="en" dir="ltr">A counselor from the <a href="https://twitter.com/uscrfuganda?ref_src=twsrc%5Etfw">@uscrfuganda</a> supporting a sickle cell warrior in Namutumba District.<br><br>Now heading to Bugweri District — your support can change more lives. <a href="https://twitter.com/WagumaAggrey?ref_src=twsrc%5Etfw">@WagumaAggrey</a> <a href="https://twitter.com/FundSickleCell?ref_src=twsrc%5Etfw">@FundSickleCell</a> <a href="https://twitter.com/hashtag/SickleCellAwareness?src=hash&amp;ref_src=twsrc%5Etfw">#SickleCellAwareness</a> <a href="https://twitter.com/hashtag/WLRUMedicalCamp?src=hash&amp;ref_src=twsrc%5Etfw">#WLRUMedicalCamp</a> <a href="https://twitter.com/hashtag/IKNOW?src=hash&amp;ref_src=twsrc%5Etfw">#IKNOW</a> <a href="https://twitter.com/hashtag/CommunityHealth?src=hash&amp;ref_src=twsrc%5Etfw">#CommunityHealth</a> <a href="https://twitter.com/hashtag/HealingHopeHumanity?src=hash&amp;ref_src=twsrc%5Etfw">#HealingHopeHumanity</a> <a href="https://t.co/LS7lbpC5HV">pic.twitter.com/LS7lbpC5HV</a></p>&mdash; Waguma Life Reach Uganda (@lifereachUg) <a href="https://twitter.com/lifereachUg/status/2034560748571996377?ref_src=twsrc%5Etfw">March 19, 2026</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-      <blockquote class="twitter-tweet" data-media-max-width="100%"><p lang="en" dir="ltr">Extending hands, changing lives. <a href="https://twitter.com/WagumaAggrey?ref_src=twsrc%5Etfw">@WagumaAggrey</a> <a href="https://twitter.com/boy_childforum?ref_src=twsrc%5Etfw">@boy_childforum</a> <a href="https://twitter.com/MinofHealthUG?ref_src=twsrc%5Etfw">@MinofHealthUG</a> <a href="https://twitter.com/sumz_snacks?ref_src=twsrc%5Etfw">@sumz_snacks</a> <a href="https://twitter.com/movit_ug?ref_src=twsrc%5Etfw">@movit_ug</a> <a href="https://twitter.com/hashtag/WagumaLifeReach?src=hash&amp;ref_src=twsrc%5Etfw">#WagumaLifeReach</a> <a href="https://twitter.com/hashtag/CharityInAction?src=hash&amp;ref_src=twsrc%5Etfw">#CharityInAction</a> <a href="https://t.co/VNIwl07aN5">pic.twitter.com/VNIwl07aN5</a></p>&mdash; Waguma Life Outreach Uganda (@lifereachUg) <a href="https://twitter.com/lifereachUg/status/1966329160684679642?ref_src=twsrc%5Etfw">September 12, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+  <div style="margin-bottom: 0; margin-top:0;">
+    <p class="blog-section-label">Live from our X (Twitter) feed</p>
+  <div class="embedpost" style="margin-bottom: 0;">
+    <blockquote class="twitter-tweet"><p lang="en" dir="ltr">It&#39;s a Good Friday to reflect on the suffering of Christ for all Mankind, do you believe and accept his sacrifice he paid for you? <a href="https://twitter.com/WagumaAggrey?ref_src=twsrc%5Etfw">@WagumaAggrey</a> <a href="https://twitter.com/hashtag/HappyGoodFriday?src=hash&amp;ref_src=twsrc%5Etfw">#HappyGoodFriday</a> <a href="https://t.co/V3jsIQnVQy">pic.twitter.com/V3jsIQnVQy</a></p>&mdash; Waguma Life Reach Uganda (@lifereachUg) <a href="https://twitter.com/lifereachUg/status/2040003820294382061?ref_src=twsrc%5Etfw">April 3, 2026</a></blockquote>
+    <blockquote class="twitter-tweet"><p lang="en" dir="ltr">A counselor from the <a href="https://twitter.com/uscrfuganda?ref_src=twsrc%5Etfw">@uscrfuganda</a> supporting a sickle cell warrior in Namutumba District.<br><br>Now heading to Bugweri District — your support can change more lives. <a href="https://twitter.com/WagumaAggrey?ref_src=twsrc%5Etfw">@WagumaAggrey</a> <a href="https://twitter.com/hashtag/SickleCellAwareness?src=hash&amp;ref_src=twsrc%5Etfw">#SickleCellAwareness</a> <a href="https://t.co/LS7lbpC5HV">pic.twitter.com/LS7lbpC5HV</a></p>&mdash; Waguma Life Reach Uganda (@lifereachUg) <a href="https://twitter.com/lifereachUg/status/2034560748571996377?ref_src=twsrc%5Etfw">March 19, 2026</a></blockquote>
+    <blockquote class="twitter-tweet" data-media-max-width="100%"><p lang="en" dir="ltr">Extending hands, changing lives. <a href="https://twitter.com/WagumaAggrey?ref_src=twsrc%5Etfw">@WagumaAggrey</a> <a href="https://twitter.com/hashtag/WagumaLifeReach?src=hash&amp;ref_src=twsrc%5Etfw">#WagumaLifeReach</a> <a href="https://twitter.com/hashtag/CharityInAction?src=hash&amp;ref_src=twsrc%5Etfw">#CharityInAction</a> <a href="https://t.co/VNIwl07aN5">pic.twitter.com/VNIwl07aN5</a></p>&mdash; Waguma Life Outreach Uganda (@lifereachUg) <a href="https://twitter.com/lifereachUg/status/1966329160684679642?ref_src=twsrc%5Etfw">September 12, 2025</a></blockquote>
   </div>
-      
+  </div>
+
+  
 </section>
+<!-- Blog Section End -->
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
 
 <!-- Contact Us Section Start -->
-<section id="contact-us">
+ <!-- Contact Us Section Start -->
+<section id="contact-us" style="margin-bottom: 0;">
   <div class="contact-container">
     <h2>Contact Us</h2>
     <p class="contact-desc">We'd love to hear from you! Reach out to us through any of the channels below.</p>
+
     <div class="contact-details">
       <div class="contact-item">
-        <i class="fa-solid fa-phone contact-icon"></i>
+        <i class="fa-solid fa-phone contact-icon" aria-hidden="true"></i>
         <span class="contact-label">Airtel:</span>
-        <a href="tel:+256703204351" class="contact-link">+256 703 204351</a>
+        <a href="tel:+256703204351" class="contact-link" aria-label="Call Airtel number +256 703 204351">+256 703 204351</a>
       </div>
       <div class="contact-item">
-        <i class="fa-solid fa-phone contact-icon"></i>
+        <i class="fa-solid fa-phone contact-icon" aria-hidden="true"></i>
         <span class="contact-label">MTN:</span>
-        <a href="tel:+256784512521" class="contact-link">+256 784 512521</a>
+        <a href="tel:+256784512521" class="contact-link" aria-label="Call MTN number +256 784 512521">+256 784 512521</a>
       </div>
       <div class="contact-item">
-        <i class="fa-solid fa-envelope contact-icon"></i>
+        <i class="fa-solid fa-envelope contact-icon" aria-hidden="true"></i>
         <span class="contact-label">Email:</span>
-        <a href="mailto:wagumalifereachuganda@gmail.com" class="contact-link">wagumalifereachuganda@gmail.com</a>
+        <a href="mailto:wagumalifereachuganda@gmail.com" class="contact-link" aria-label="Send email to Waguma Life Reach Uganda">wagumalifereachuganda@gmail.com</a>
       </div>
       <div class="contact-item">
-        <i class="fa-brands fa-whatsapp contact-icon"></i>
+        <i class="fa-brands fa-whatsapp contact-icon" aria-hidden="true"></i>
         <span class="contact-label">WhatsApp:</span>
-        <a href="https://wa.me/256703204351" target="_blank" class="contact-link whatsapp-btn">
-          Chat on WhatsApp.
+        <a href="https://wa.me/256703204351" target="_blank" rel="noopener noreferrer" class="contact-link whatsapp-btn" aria-label="Chat with us on WhatsApp">
+          <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Chat on WhatsApp
         </a>
       </div>
     </div>
-    <div class="contact-social">
+
+    <div class="contact-social" role="navigation" aria-label="Social media links">
       <span class="contact-social-label">Connect with us:</span>
-      <a href="https://www.facebook.com/WagumaLifeReachUgand/"><i class="fa-brands fa-facebook"></i></a>
-         <a href="https://x.com/lifereachUg"><i class="fa-brands fa-twitter"></i></a>    
-         <a href="https://www.instagram.com/wagumalifereachuganda/"><i class="fa-brands fa-instagram"></i></a>
-         <a href="mailto:wagumalifereachuganda@gmail.com"><i class="fa-solid fa-envelope"></i>
-         <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+      <a href="https://www.facebook.com/WagumaLifeReachUgand/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook" aria-hidden="true"></i></a>
+      <a href="https://x.com/lifereachUg" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
+      <a href="https://www.instagram.com/wagumalifereachuganda/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+      <a href="mailto:wagumalifereachuganda@gmail.com" aria-label="Email us"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
+      <a href="#" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
     </div>
   </div>
 </section>
+<!-- Contact Us Section End -->
+
 <!-- Contact Us Section End -->
 
 <!-- Place this just before </body> -->
