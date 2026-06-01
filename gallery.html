@@ -1,818 +1,403 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery - Waguma Life Outreach UG</title>
-    <link rel="icon" type="image/png" href="logo.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f8f9fa;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        /* Navigation */
-        .navbar {
-            background: linear-gradient(90deg, #ffffff 0%, #f8f9fa 100%);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-            padding: 1rem 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .navbar a {
-            color: #0f7b3f;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-
-        .navbar a:hover {
-            color: #c62828;
-        }
-
-        /* Hero Section */
-        .gallery-hero {
-            background: linear-gradient(135deg, #0f7b3f 0%, #0d5f32 50%, #c62828 100%);
-            color: white;
-            padding: 80px 20px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .gallery-hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(255,255,255,0.05) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .gallery-hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            margin: 0 auto;
-            animation: slideInDown 0.8s ease;
-        }
-
-        .gallery-hero h1 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 800;
-            margin-bottom: 15px;
-            letter-spacing: -1px;
-        }
-
-        .gallery-hero p {
-            font-size: 1.1rem;
-            opacity: 0.95;
-            margin-bottom: 10px;
-            font-weight: 300;
-        }
-
-        .gallery-stats {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 30px;
-            flex-wrap: wrap;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 800;
-            display: block;
-            color: #c62828;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-
-        /* Gallery Container */
-        .gallery-section {
-            padding: 80px 20px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .gallery-section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .gallery-section-title h2 {
-            color: #0f7b3f;
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 15px;
-        }
-
-        .gallery-section-title p {
-            color: #666;
-            font-size: 1.1rem;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-
-
-        /* Masonry Gallery Grid */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 24px;
-            animation: fadeIn 0.6s ease;
-        }
-
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 16px;
-            cursor: pointer;
-            group: 1;
-            aspect-ratio: 1;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 16px 40px rgba(15, 123, 63, 0.18);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-            filter: brightness(0.95);
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.08);
-            filter: brightness(1);
-        }
-
-        .gallery-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(15, 123, 63, 0.7) 0%, rgba(198, 40, 40, 0.7) 100%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-        }
-
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
-        }
-
-        .gallery-overlay-icon {
-            font-size: 2.5rem;
-            animation: zoomIn 0.4s ease;
-        }
-
-        /* Enhanced Lightbox */
-        .lightbox {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(4px);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            padding: 20px;
-        }
-
-        .lightbox.active {
-            display: flex;
-            opacity: 1;
-        }
-
-        .lightbox-container {
-            position: relative;
-            max-width: 90vw;
-            max-height: 90vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .lightbox-image-wrapper {
-            position: relative;
-            max-height: 70vh;
-            margin-bottom: 20px;
-        }
-
-        .lightbox-image-wrapper img {
-            max-width: 100%;
-            max-height: 70vh;
-            border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-            animation: zoomIn 0.4s ease;
-        }
-
-        /* Lightbox Controls */
-        .lightbox-close {
-            position: absolute;
-            top: -40px;
-            right: 0;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-            transition: color 0.3s ease;
-            background: rgba(255, 255, 255, 0.1);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .lightbox-close:hover {
-            color: #c62828;
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .lightbox-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 2rem;
-            color: white;
-            cursor: pointer;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .lightbox-nav:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .lightbox-prev {
-            left: -80px;
-        }
-
-        .lightbox-next {
-            right: -80px;
-        }
-
-        .lightbox-info {
-            color: white;
-            text-align: center;
-            font-size: 0.95rem;
-        }
-
-        .lightbox-counter {
-            font-weight: 600;
-        }
-
-        /* Animations */
-        @keyframes slideInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes zoomIn {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        /* Loading State */
-        .loading-spinner {
-            display: inline-block;
-            width: 30px;
-            height: 30px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-top-color: white;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1200px) {
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-                gap: 20px;
-            }
-
-            .lightbox-prev {
-                left: -60px;
-            }
-
-            .lightbox-next {
-                right: -60px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .gallery-hero {
-                padding: 60px 20px;
-            }
-
-            .gallery-hero h1 {
-                font-size: 2rem;
-            }
-
-            .gallery-stats {
-                gap: 20px;
-            }
-
-            .gallery-section {
-                padding: 60px 20px;
-            }
-
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 16px;
-            }
-
-            .lightbox-nav {
-                width: 40px;
-                height: 40px;
-                font-size: 1.5rem;
-            }
-
-            .lightbox-prev,
-            .lightbox-next {
-                position: fixed;
-                top: auto;
-                bottom: 20px;
-            }
-
-            .lightbox-prev {
-                left: 20px;
-            }
-
-            .lightbox-next {
-                right: 20px;
-            }
-
-            .lightbox-image-wrapper {
-                max-height: 60vh;
-            }
-
-            .lightbox-image-wrapper img {
-                max-height: 60vh;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .gallery-filters {
-                gap: 10px;
-            }
-
-            .filter-btn {
-                padding: 8px 16px;
-                font-size: 0.85rem;
-            }
-
-            .gallery-section-title h2 {
-                font-size: 1.8rem;
-            }
-
-            .lightbox-close {
-                top: 10px;
-                right: 10px;
-            }
-        }
-
-        /* Footer - Matching index.html */
-        .site-footer {
-            background: #111;
-            color: #e3f6fc;
-            padding: 40px 0 0 0;
-            margin-top: 80px;
-            font-family: 'Segoe UI', Arial, sans-serif;
-        }
-
-        .footer-main {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: flex-start;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 32px;
-            gap: 32px;
-        }
-
-        .footer-brand {
-            flex: 1 1 220px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 10px;
-        }
-
-        .footer-logo {
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            background: #fff;
-            object-fit: contain;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-        }
-
-        .footer-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin-top: 4px;
-            color: #fff;
-        }
-
-        .footer-slogan {
-            font-size: 1rem;
-            font-weight: 400;
-            margin-top: 2px;
-            color: #e3f6fc;
-        }
-
-        .footer-contact {
-            flex: 1 1 220px;
-        }
-
-        .footer-contact h4 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: #fff;
-        }
-
-        .footer-contact ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .footer-contact li {
-            margin-bottom: 8px;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .footer-contact a {
-            color: #e3f6fc;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .footer-contact a:hover {
-            color: #00bfff;
-            text-decoration: underline;
-        }
-
-        .footer-contact i {
-            color: #00bfff;
-            font-size: 1.1rem;
-        }
-
-        .footer-social {
-            flex: 1 1 180px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 10px;
-        }
-
-        .footer-social h4 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: #fff;
-        }
-
-        .footer-social a {
-            color: #e3f6fc;
-            font-size: 1.5rem;
-            margin-right: 14px;
-            transition: color 0.2s;
-            display: inline-block;
-        }
-
-        .footer-social a:hover {
-            color: #00bfff;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            background: #181818;
-            padding: 18px 0 12px 0;
-            margin-top: 32px;
-            font-size: 1rem;
-            color: #e3f6fc;
-            letter-spacing: 1px;
-            border-top: 1px solid #222;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery – Waguma Life Outreach Uganda</title>
+  <meta name="description" content="Photo gallery of Waguma Life Outreach Uganda's medical camps, youth programs, and humanitarian initiatives.">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    :root {
+      --green-dark:#0a5c30; --green:#0f7b3f; --green-light:#1da55a;
+      --red:#c62828; --gold:#e8a020;
+      --white:#ffffff; --off-white:#f7f9f7;
+      --text:#1a1a1a; --text-muted:#6b7280; --border:#e5e7eb;
+      --shadow-sm:0 2px 8px rgba(0,0,0,0.07); --shadow-md:0 8px 32px rgba(0,0,0,0.10);
+      --shadow-lg:0 20px 60px rgba(0,0,0,0.13); --radius:14px;
+      --transition:0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'DM Sans',sans-serif; color:var(--text); background:var(--off-white); }
+
+    /* NAVBAR */
+    .nav {
+      background:var(--white); box-shadow:var(--shadow-sm); padding:0 28px;
+      display:flex; align-items:center; justify-content:space-between;
+      height:68px; position:sticky; top:0; z-index:1000;
+    }
+    .nav-back {
+      display:flex; align-items:center; gap:10px;
+      color:var(--green-dark); font-weight:600; font-size:0.95rem;
+      text-decoration:none; transition:color var(--transition);
+    }
+    .nav-back:hover { color:var(--red); }
+    .nav-brand {
+      display:flex; align-items:center; gap:10px;
+      font-family:'Playfair Display',serif; font-size:1rem; font-weight:700;
+      color:var(--green-dark); text-decoration:none;
+    }
+    .nav-brand img { width:38px; height:38px; border-radius:50%; object-fit:contain; }
+
+    /* HERO */
+    .gallery-hero {
+      background:linear-gradient(135deg, var(--green-dark) 0%, #0d5f32 50%, var(--red) 100%);
+      color:white; padding:90px 24px 70px; text-align:center; position:relative; overflow:hidden;
+    }
+    .gallery-hero::before {
+      content:''; position:absolute; inset:0;
+      background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.08) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 20%, rgba(255,255,255,0.05) 0%, transparent 50%);
+    }
+    .gallery-hero-inner { position:relative; z-index:2; max-width:760px; margin:0 auto; }
+    .gallery-hero-label {
+      display:inline-block; background:rgba(255,255,255,0.15);
+      border:1px solid rgba(255,255,255,0.25); border-radius:50px;
+      padding:5px 18px; font-size:0.72rem; font-weight:700;
+      letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:18px;
+    }
+    .gallery-hero h1 {
+      font-family:'Playfair Display',serif; font-size:clamp(2rem,5vw,3.4rem);
+      font-weight:900; margin-bottom:14px; line-height:1.1;
+    }
+    .gallery-hero p { font-size:1.05rem; opacity:0.9; font-weight:300; margin-bottom:36px; }
+    .hero-stats { display:flex; justify-content:center; gap:48px; flex-wrap:wrap; }
+    .hero-stat-num { display:block; font-family:'Playfair Display',serif; font-size:2.2rem; font-weight:900; color:var(--gold); }
+    .hero-stat-lbl { font-size:0.8rem; opacity:0.85; text-transform:uppercase; letter-spacing:1px; }
+    @media(max-width:580px){ .gallery-hero{padding:60px 16px 50px;} .hero-stats{gap:24px;} }
+
+    /* GALLERY SECTION */
+    .gallery-section { max-width:1400px; margin:0 auto; padding:70px 24px 80px; }
+    .gallery-top { text-align:center; margin-bottom:48px; }
+    .gallery-top h2 {
+      font-family:'Playfair Display',serif; font-size:2.2rem; font-weight:900;
+      color:var(--green-dark); margin-bottom:10px;
+    }
+    .gallery-top p { color:var(--text-muted); font-size:1rem; }
+    .divider { width:56px; height:4px; background:linear-gradient(90deg,var(--green),var(--gold)); border-radius:2px; margin:14px auto 0; }
+
+    /* FILTER TABS */
+    .filter-tabs { display:flex; gap:10px; justify-content:center; margin-bottom:44px; flex-wrap:wrap; }
+    .filter-btn {
+      padding:8px 22px; border-radius:50px; border:1.5px solid var(--border);
+      background:var(--white); color:var(--text-muted); font-family:'DM Sans',sans-serif;
+      font-size:0.87rem; font-weight:600; cursor:pointer; transition:var(--transition);
+    }
+    .filter-btn:hover, .filter-btn.active { background:var(--green); color:white; border-color:var(--green); }
+
+    /* GRID */
+    .gallery-grid {
+      display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
+      gap:20px;
+    }
+    .gallery-item {
+      position:relative; overflow:hidden; border-radius:var(--radius);
+      aspect-ratio:1; cursor:pointer; box-shadow:var(--shadow-sm);
+      transition:transform var(--transition), box-shadow var(--transition);
+      background:#e8e8e8;
+    }
+    .gallery-item:hover { transform:translateY(-6px); box-shadow:var(--shadow-md); }
+    .gallery-item img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.5s ease; filter:brightness(0.96); }
+    .gallery-item:hover img { transform:scale(1.07); filter:brightness(1); }
+    .gallery-overlay {
+      position:absolute; inset:0;
+      background:linear-gradient(135deg, rgba(10,92,48,0.75) 0%, rgba(198,40,40,0.65) 100%);
+      opacity:0; transition:opacity var(--transition);
+      display:flex; align-items:center; justify-content:center; color:white;
+    }
+    .gallery-item:hover .gallery-overlay { opacity:1; }
+    .gallery-overlay-icon { font-size:2.2rem; }
+    .gallery-item-label {
+      position:absolute; bottom:0; left:0; right:0;
+      background:linear-gradient(transparent, rgba(0,0,0,0.6));
+      color:white; padding:28px 14px 12px;
+      font-size:0.78rem; font-weight:500; opacity:0;
+      transition:opacity var(--transition);
+    }
+    .gallery-item:hover .gallery-item-label { opacity:1; }
+
+    /* LIGHTBOX */
+    .lightbox {
+      position:fixed; inset:0; background:rgba(0,0,0,0.92);
+      backdrop-filter:blur(6px); z-index:9999;
+      display:none; align-items:center; justify-content:center;
+      padding:20px;
+    }
+    .lightbox.open { display:flex; }
+    .lightbox-inner {
+      position:relative; max-width:90vw; max-height:90vh;
+      display:flex; flex-direction:column; align-items:center;
+    }
+    .lightbox-img {
+      max-width:85vw; max-height:72vh; border-radius:10px;
+      object-fit:contain; display:block;
+      box-shadow:0 20px 60px rgba(0,0,0,0.5);
+    }
+    .lightbox-close {
+      position:fixed; top:20px; right:24px;
+      font-size:2rem; color:rgba(255,255,255,0.7);
+      cursor:pointer; line-height:1; transition:color var(--transition);
+      background:none; border:none;
+    }
+    .lightbox-close:hover { color:white; }
+    .lightbox-nav {
+      position:fixed; top:50%; transform:translateY(-50%);
+      background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.2);
+      color:white; width:46px; height:46px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.1rem; cursor:pointer; transition:background var(--transition);
+    }
+    .lightbox-nav:hover { background:rgba(255,255,255,0.25); }
+    #lbPrev { left:20px; }
+    #lbNext { right:20px; }
+    .lightbox-info { text-align:center; margin-top:16px; color:rgba(255,255,255,0.85); }
+    .lightbox-counter { font-size:0.78rem; color:rgba(255,255,255,0.55); display:block; margin-bottom:4px; }
+    .lightbox-caption { font-size:0.95rem; font-weight:500; }
+
+    /* FOOTER */
+    .site-footer { background:var(--green-dark); color:rgba(255,255,255,0.8); }
+    .footer-inner {
+      max-width:1200px; margin:0 auto;
+      display:flex; flex-wrap:wrap; gap:32px;
+      padding:52px 24px 40px; justify-content:space-between;
+    }
+    .footer-brand { max-width:280px; }
+    .footer-brand img { width:52px; height:52px; border-radius:50%; object-fit:contain; margin-bottom:12px; }
+    .footer-brand h4 { font-family:'Playfair Display',serif; color:white; font-size:1rem; margin-bottom:4px; }
+    .footer-brand p { font-size:0.83rem; line-height:1.7; }
+    .footer-col h5 { color:white; font-size:0.88rem; font-weight:700; margin-bottom:14px; letter-spacing:0.5px; }
+    .footer-col ul { list-style:none; display:flex; flex-direction:column; gap:8px; }
+    .footer-col ul li a { color:rgba(255,255,255,0.65); font-size:0.85rem; text-decoration:none; display:flex; align-items:center; gap:6px; transition:color var(--transition); }
+    .footer-col ul li a:hover { color:var(--gold); }
+    .footer-socials { display:flex; gap:10px; margin-top:14px; }
+    .f-social {
+      width:36px; height:36px; border-radius:8px;
+      background:rgba(255,255,255,0.1); color:rgba(255,255,255,0.7);
+      display:flex; align-items:center; justify-content:center;
+      font-size:0.95rem; text-decoration:none; transition:var(--transition);
+    }
+    .f-social:hover { background:var(--gold); color:white; }
+    .footer-bottom {
+      text-align:center; background:rgba(0,0,0,0.3);
+      padding:16px; font-size:0.82rem; color:rgba(255,255,255,0.5);
+    }
+
+    @media(max-width:580px){ .gallery-grid{grid-template-columns:repeat(2,1fr); gap:12px;} }
+  </style>
 </head>
-
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <a href="index.html"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
-    </nav>
 
-    <!-- Hero Section -->
-    <section class="gallery-hero">
-        <div class="gallery-hero-content">
-            <h1>Our Impact Gallery</h1>
-            <p>Visual stories of hope, healing, and transformation across Ugandan communities</p>
-            <div class="gallery-stats">
-                <div class="stat-item">
-                    <span class="stat-number">36+</span>
-                    <span class="stat-label">Photos</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">7</span>
-                    <span class="stat-label">Programs</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">1000+</span>
-                    <span class="stat-label">Lives Touched</span>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-back"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+  <a href="index.html" class="nav-brand">
+    <img src="logo.png" alt="Logo">
+    Waguma Life Outreach
+  </a>
+</nav>
 
-    <!-- Gallery Section -->
-    <section class="gallery-section">
-        <div class="gallery-section-title">
-            <h2>Explore Our Work</h2>
-            <p>Every image tells a story of dedication, compassion, and real change</p>
-        </div>
-
-        <!-- Gallery Grid -->
-        <div class="gallery-grid" id="gallery"></div>
-    </section>
-
-    <!-- Enhanced Lightbox -->
-    <div class="lightbox" id="lightbox">
-        <div class="lightbox-container">
-            <div class="lightbox-close" id="closeBtn">&times;</div>
-            
-            <div class="lightbox-image-wrapper">
-                <span class="lightbox-nav lightbox-prev" id="prevBtn">
-                    <i class="fa-solid fa-chevron-left"></i>
-                </span>
-                <img id="lightboxImg" alt="">
-                <span class="lightbox-nav lightbox-next" id="nextBtn">
-                    <i class="fa-solid fa-chevron-right"></i>
-                </span>
-            </div>
-
-            <div class="lightbox-info">
-                <span class="lightbox-counter"><span id="currentImage">1</span> / <span id="totalImages">36</span></span>
-                <p id="imageCaption">Waguma Life Outreach UG</p>
-            </div>
-        </div>
+<!-- HERO -->
+<section class="gallery-hero">
+  <div class="gallery-hero-inner">
+    <div class="gallery-hero-label"><i class="fa-solid fa-images"></i> &nbsp;Our Impact Gallery</div>
+    <h1>Visual Stories of Hope &amp; Healing</h1>
+    <p>Every photograph captures a moment of compassion, care, and community transformation across Uganda.</p>
+    <div class="hero-stats">
+      <div><span class="hero-stat-num">36+</span><span class="hero-stat-lbl">Photos</span></div>
+      <div><span class="hero-stat-num">7</span><span class="hero-stat-lbl">Programs</span></div>
+      <div><span class="hero-stat-num">1,000+</span><span class="hero-stat-lbl">Lives Touched</span></div>
+      <div><span class="hero-stat-num">5</span><span class="hero-stat-lbl">Districts</span></div>
     </div>
+  </div>
+</section>
 
-    <!-- Footer -->
-    <footer class="site-footer">
-        <div class="footer-main">
-            <div class="footer-brand">
-                <img src="logo.png" alt="Waguma Life Logo" class="footer-logo">
-                <span class="footer-title">WAGUMA LIFE OUTREACH UG</span>
-                <p class="footer-slogan">Healing, Hope, and Humanity</p>
-            </div>
-            <div class="footer-contact">
-                <h4>Contact</h4>
-                <ul>
-                    <li><i class="fa-solid fa-phone"></i> Airtel: <a href="tel:+256703204351">+256 703 204351</a></li>
-                    <li><i class="fa-solid fa-phone"></i> MTN: <a href="tel:+256784512521">+256 784 512521</a></li>
-                    <li><i class="fa-solid fa-envelope"></i> <a href="mailto:wagumalifereachuganda@gmail.com">wagumalifereachuganda@gmail.com</a></li>
-                    <li><i class="fa-brands fa-whatsapp"></i> <a href="https://wa.me/256703204351" target="_blank">WhatsApp</a></li>
-                </ul>
-            </div>
-            <div class="footer-social">
-                <h4>Follow Us</h4>
-                <a href="https://www.facebook.com/WagumaLifeReachUgand/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-                <a href="https://x.com/lifereachUg" target="_blank"><i class="fa-brands fa-twitter"></i></a>
-                <a href="https://www.instagram.com/wagumalifereachuganda/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-            </div>
+<!-- GALLERY -->
+<section class="gallery-section">
+  <div class="gallery-top">
+    <h2>Explore Our Work</h2>
+    <p>Every image tells a story of dedication, compassion, and real change in communities across Uganda.</p>
+    <div class="divider"></div>
+  </div>
+  <div class="filter-tabs">
+    <button class="filter-btn active" data-filter="all">All Photos</button>
+    <button class="filter-btn" data-filter="medical">Medical</button>
+    <button class="filter-btn" data-filter="youth">Youth</button>
+    <button class="filter-btn" data-filter="community">Community</button>
+  </div>
+  <div class="gallery-grid" id="galleryGrid"></div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lightbox-close" id="lbClose" aria-label="Close">&times;</button>
+  <div class="lightbox-inner">
+    <img id="lbImg" class="lightbox-img" src="" alt="">
+    <div class="lightbox-info">
+      <span class="lightbox-counter"><span id="lbCurrent">1</span> / <span id="lbTotal">36</span></span>
+      <p class="lightbox-caption" id="lbCaption">Waguma Life Outreach Uganda</p>
+    </div>
+  </div>
+  <button class="lightbox-nav" id="lbPrev" aria-label="Previous image"><i class="fa-solid fa-chevron-left"></i></button>
+  <button class="lightbox-nav" id="lbNext" aria-label="Next image"><i class="fa-solid fa-chevron-right"></i></button>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="logo.png" alt="Waguma Life Logo">
+      <h4>WAGUMA LIFE OUTREACH UG</h4>
+      <p style="color:var(--gold);font-size:0.82rem;margin-bottom:8px;">Healing, Hope, and Humanity</p>
+      <p>A non-profit transforming lives through medical outreach, youth empowerment, and humanitarian support across Uganda.</p>
+      <div class="footer-socials">
+        <a href="https://www.facebook.com/WagumaLifeReachUgand/" target="_blank" rel="noopener" class="f-social"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://x.com/lifereachUg" target="_blank" rel="noopener" class="f-social"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.instagram.com/wagumalifereachuganda/" target="_blank" rel="noopener" class="f-social"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://wa.me/256703204351" target="_blank" rel="noopener" class="f-social"><i class="fa-brands fa-whatsapp"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Quick Links</h5>
+      <ul>
+        <li><a href="index.html"><i class="fa-solid fa-chevron-right"></i> Home</a></li>
+        <li><a href="index.html#about"><i class="fa-solid fa-chevron-right"></i> About Us</a></li>
+        <li><a href="index.html#causes"><i class="fa-solid fa-chevron-right"></i> Our Causes</a></li>
+        <li><a href="index.html#blog"><i class="fa-solid fa-chevron-right"></i> Blog</a></li>
+        <li><a href="gallery.html"><i class="fa-solid fa-chevron-right"></i> Gallery</a></li>
+        <li><a href="index.html#contact"><i class="fa-solid fa-chevron-right"></i> Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="tel:+256703204351"><i class="fa-solid fa-phone"></i> +256 703 204 351</a></li>
+        <li><a href="tel:+256784512521"><i class="fa-solid fa-phone"></i> +256 784 512 521</a></li>
+        <li><a href="mailto:wagumalifereachuganda@gmail.com"><i class="fa-solid fa-envelope"></i> Email Us</a></li>
+        <li><a href="https://wa.me/256703204351" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; 2026 Waguma Life Outreach Uganda. All rights reserved.</div>
+</footer>
+
+<script>
+  const captions = [
+    'Medical outreach transforming lives','Care team in action','Community engagement',
+    'Healthcare service delivery','Youth empowerment program','Medical screening session',
+    'Community collaboration','Health awareness initiative','Team dedication',
+    'Patient care focus','Outreach impact','Medical support network',
+    'Community gathering','Healthcare delivery','Youth mentorship',
+    'Medical camp operation','Team coordination','Community health drive',
+    'Youth engagement','Patient consultation','Team collaboration',
+    'Health mission','Community support','Medical team',
+    'Youth program','Healthcare access','Community care',
+    'Outreach success','Team effort','Patient support',
+    'Medical mission','Community impact','Youth involvement',
+    'Healthcare forward','Team dedication','Community transformation'
+  ];
+  const categories = ['medical','community','youth','community','youth','medical','community','community',
+    'youth','medical','community','medical','community','medical','youth','medical','community',
+    'community','youth','medical','community','medical','community','medical','youth','medical',
+    'community','community','youth','medical','medical','community','youth','medical','youth','community'];
+
+  const images = Array.from({length:36}, (_,i) => ({
+    src:`ds${i+1}.jpg.jpeg`, caption:captions[i], category:categories[i]
+  }));
+
+  const grid = document.getElementById('galleryGrid');
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  const lbCurrent = document.getElementById('lbCurrent');
+  const lbTotal = document.getElementById('lbTotal');
+  const lbCaption = document.getElementById('lbCaption');
+  let lbIndex = 0;
+  let filtered = [...images];
+
+  lbTotal.textContent = images.length;
+
+  function buildGrid(arr) {
+    grid.innerHTML = '';
+    arr.forEach((img, i) => {
+      const item = document.createElement('div');
+      item.className = 'gallery-item';
+      item.dataset.index = i;
+      item.innerHTML = `
+        <img src="${img.src}" alt="${img.caption}" loading="lazy"
+          onerror="this.style.display='none'">
+        <div class="gallery-overlay">
+          <i class="fa-solid fa-expand gallery-overlay-icon"></i>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Waguma Life Outreach UG. All rights reserved.</p>
-        </div>
+        <div class="gallery-item-label">${img.caption}</div>`;
+      item.onclick = () => openLightbox(i);
+      grid.appendChild(item);
+    });
+  }
 
-    <script>
-        const gallery = document.getElementById('gallery');
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightboxImg');
-        const currentImageSpan = document.getElementById('currentImage');
-        const totalImagesSpan = document.getElementById('totalImages');
-        const imageCaption = document.getElementById('imageCaption');
+  function openLightbox(i) {
+    lbIndex = i;
+    lbImg.src = filtered[i].src;
+    lbImg.alt = filtered[i].caption;
+    lbCurrent.textContent = i + 1;
+    lbTotal.textContent = filtered.length;
+    lbCaption.textContent = filtered[i].caption;
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
 
-        let currentIndex = 0;
-        const images = [];
-        const captions = [
-            'Medical outreach transforming lives',
-            'Care team in action',
-            'Community engagement',
-            'Healthcare service delivery',
-            'Youth empowerment program',
-            'Medical screening session',
-            'Community collaboration',
-            'Health awareness initiative',
-            'Team dedication',
-            'Patient care focus',
-            'Outreach impact',
-            'Medical support network',
-            'Community gathering',
-            'Healthcare delivery',
-            'Youth mentorship',
-            'Medical camp operation',
-            'Team coordination',
-            'Community health drive',
-            'Youth engagement',
-            'Patient consultation',
-            'Team collaboration',
-            'Health mission',
-            'Community support',
-            'Medical team',
-            'Youth program',
-            'Healthcare access',
-            'Community care',
-            'Outreach success',
-            'Team effort',
-            'Patient support',
-            'Medical mission',
-            'Community impact',
-            'Youth involvement',
-            'Healthcare forward',
-            'Team dedication',
-            'Community transformation'
-        ];
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
 
-        // Load images
-        for (let i = 1; i <= 36; i++) {
-            const src = `ds${i}.jpg.jpeg`;
-            images.push({
-                src: src,
-                category: i % 4 === 0 ? 'medical' : i % 4 === 1 ? 'youth' : 'community'
-            });
+  function navigate(dir) {
+    lbIndex = (lbIndex + dir + filtered.length) % filtered.length;
+    lbImg.src = filtered[lbIndex].src;
+    lbImg.alt = filtered[lbIndex].caption;
+    lbCurrent.textContent = lbIndex + 1;
+    lbCaption.textContent = filtered[lbIndex].caption;
+  }
 
-            const item = document.createElement('div');
-            item.className = 'gallery-item';
-            item.dataset.category = images[i-1].category;
-            item.dataset.index = i - 1;
+  document.getElementById('lbClose').onclick = closeLightbox;
+  document.getElementById('lbPrev').onclick = () => navigate(-1);
+  document.getElementById('lbNext').onclick = () => navigate(1);
+  lightbox.addEventListener('click', e => { if(e.target === lightbox) closeLightbox(); });
 
-            const img = document.createElement('img');
-            img.src = src;
-            img.alt = captions[i - 1];
-            img.loading = 'lazy';
+  document.addEventListener('keydown', e => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'ArrowRight') navigate(1);
+    if (e.key === 'ArrowLeft') navigate(-1);
+    if (e.key === 'Escape') closeLightbox();
+  });
 
-            const overlay = document.createElement('div');
-            overlay.className = 'gallery-overlay';
-            overlay.innerHTML = '<i class="fa-solid fa-expand overlay-icon gallery-overlay-icon"></i>';
+  // Touch swipe
+  let touchStartX = 0;
+  lightbox.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, {passive:true});
+  lightbox.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (dx > 50) navigate(-1);
+    if (dx < -50) navigate(1);
+  });
 
-            item.appendChild(img);
-            item.appendChild(overlay);
+  // Filter
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.onclick = function() {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      const f = this.dataset.filter;
+      filtered = f === 'all' ? [...images] : images.filter(img => img.category === f);
+      buildGrid(filtered);
+    };
+  });
 
-            item.addEventListener('click', () => openLightbox(i - 1));
+  buildGrid(images);
+</script>
 
-            gallery.appendChild(item);
-        }
-
-        totalImagesSpan.textContent = images.length;
-
-        function openLightbox(index) {
-            currentIndex = index;
-            lightbox.classList.add('active');
-            updateLightboxImage();
-        }
-
-        function updateLightboxImage() {
-            lightboxImg.src = images[currentIndex].src;
-            lightboxImg.alt = captions[currentIndex];
-            currentImageSpan.textContent = currentIndex + 1;
-            imageCaption.textContent = captions[currentIndex];
-        }
-
-        function nextImage() {
-            currentIndex = (currentIndex + 1) % images.length;
-            updateLightboxImage();
-        }
-
-        function prevImage() {
-            currentIndex = (currentIndex - 1 + images.length) % images.length;
-            updateLightboxImage();
-        }
-
-        // Event listeners
-        document.getElementById('nextBtn').addEventListener('click', nextImage);
-        document.getElementById('prevBtn').addEventListener('click', prevImage);
-        document.getElementById('closeBtn').addEventListener('click', () => {
-            lightbox.classList.remove('active');
-        });
-
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (!lightbox.classList.contains('active')) return;
-
-            if (e.key === 'ArrowRight') nextImage();
-            if (e.key === 'ArrowLeft') prevImage();
-            if (e.key === 'Escape') lightbox.classList.remove('active');
-        });
-
-        // Touch swipe
-        let startX = 0;
-        lightbox.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].clientX;
-        });
-
-        lightbox.addEventListener('touchend', (e) => {
-            const endX = e.changedTouches[0].clientX;
-            if (startX - endX > 50) nextImage();
-            if (endX - startX > 50) prevImage();
-        });
-
-        // Close on background click
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) {
-                lightbox.classList.remove('active');
-            }
-        });
-
-
-    </script>
+<!-- External JavaScript -->
+<script src="script.js"></script>
 
 </body>
 </html>

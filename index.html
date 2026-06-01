@@ -1,369 +1,1315 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Waguma Life Outreach UG</title>
-        <link rel="icon" type="image/png" href="logo.png">
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    </head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Waguma Life Outreach Uganda | Healing, Hope & Humanity</title>
+  <meta name="description" content="Waguma Life Reach Uganda – a non-profit transforming lives through medical outreach, youth empowerment, and humanitarian support across Uganda.">
+  <link rel="icon" type="image/png" href="logo.png">
 
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ===== CSS VARIABLES ===== */
+    :root {
+      --green-dark:  #0a5c30;
+      --green:       #0f7b3f;
+      --green-light: #1da55a;
+      --red:         #c62828;
+      --red-light:   #e53935;
+      --gold:        #e8a020;
+      --white:       #ffffff;
+      --off-white:   #f7f9f7;
+      --text:        #1a1a1a;
+      --text-muted:  #6b7280;
+      --border:      #e5e7eb;
+      --shadow-sm:   0 2px 8px rgba(0,0,0,0.07);
+      --shadow-md:   0 8px 32px rgba(0,0,0,0.10);
+      --shadow-lg:   0 20px 60px rgba(0,0,0,0.13);
+      --radius:      16px;
+      --transition:  0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ===== TOPBAR ===== */
+    .topbar {
+      background: var(--green-dark);
+      color: rgba(255,255,255,0.85);
+      font-size: 0.82rem;
+      padding: 7px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .topbar-left { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+    .topbar-left a {
+      color: rgba(255,255,255,0.85);
+      transition: color var(--transition);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .topbar-left a:hover { color: var(--gold); }
+    .topbar-right { display: flex; gap: 14px; }
+    .topbar-right a {
+      color: rgba(255,255,255,0.75);
+      font-size: 1rem;
+      transition: color var(--transition);
+    }
+    .topbar-right a:hover { color: var(--gold); }
+    @media(max-width:640px){ .topbar { display:none; } }
+
+    /* ===== NAVBAR ===== */
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--white);
+      box-shadow: var(--shadow-sm);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+      gap: 16px;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      line-height: 1.2;
+    }
+    .nav-brand img { width: 46px; height: 46px; border-radius: 50%; object-fit: contain; }
+    .nav-brand span { display: flex; flex-direction: column; }
+    .nav-brand small { font-family: 'DM Sans', sans-serif; font-size: 0.68rem; font-weight: 400; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      list-style: none;
+    }
+    .nav-links a {
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text);
+      transition: background var(--transition), color var(--transition);
+    }
+    .nav-links a:hover, .nav-links a.active { background: #f0faf4; color: var(--green); }
+    .nav-donate {
+      background: var(--green);
+      color: var(--white) !important;
+      padding: 10px 22px !important;
+      border-radius: 50px !important;
+      font-weight: 600 !important;
+      letter-spacing: 0.3px;
+      transition: background var(--transition), transform var(--transition) !important;
+      box-shadow: 0 4px 14px rgba(15,123,63,0.3);
+    }
+    .nav-donate:hover { background: var(--green-dark) !important; transform: translateY(-2px); }
+    .nav-hamburger {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      color: var(--green-dark);
+      cursor: pointer;
+      padding: 4px;
+    }
+    @media(max-width:900px){
+      .nav-links { 
+        display: none; position: absolute; top: 70px; left: 0; right: 0;
+        background: var(--white); flex-direction: column; padding: 16px;
+        box-shadow: var(--shadow-md); gap: 4px; z-index: 999;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { display: block; width: 100%; padding: 12px 16px; }
+      .nav-hamburger { display: block; }
+    }
+
+    /* ===== HERO / BANNER ===== */
+    .hero {
+      position: relative;
+      height: 90vh;
+      min-height: 500px;
+      max-height: 800px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+    .hero-slide.active { opacity: 1; }
+    .hero-slide:nth-child(1){ background-image: url('ds34.jpg.jpeg'); }
+    .hero-slide:nth-child(2){ background-image: url('ds10.jpg.jpeg'); }
+    .hero-slide:nth-child(3){ background-image: url('ds4.jpg.jpeg'); }
+    .hero-slide:nth-child(4){ background-image: url('ds30.jpg.jpeg'); }
+    .hero-overlay {
+      position: absolute; inset: 0; z-index: 2;
+      background: linear-gradient(135deg, rgba(10,92,48,0.78) 0%, rgba(0,0,0,0.5) 60%, rgba(198,40,40,0.35) 100%);
+    }
+    .hero-content {
+      position: relative; z-index: 3;
+      text-align: center; color: var(--white);
+      padding: 0 20px; max-width: 820px;
+      animation: heroIn 1s ease both;
+    }
+    @keyframes heroIn { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+    .hero-eyebrow {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      backdrop-filter: blur(10px);
+      border-radius: 50px;
+      padding: 6px 20px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      color: var(--gold);
+    }
+    .hero-content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+    .hero-content p {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      opacity: 0.92;
+      font-weight: 300;
+      margin-bottom: 36px;
+      line-height: 1.6;
+    }
+    .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-hero-primary {
+      background: var(--white);
+      color: var(--green-dark);
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    }
+    .btn-hero-primary:hover { background: var(--gold); color: var(--white); transform: translateY(-3px); }
+    .btn-hero-outline {
+      border: 2px solid rgba(255,255,255,0.7);
+      color: var(--white);
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      backdrop-filter: blur(6px);
+      transition: var(--transition);
+    }
+    .btn-hero-outline:hover { background: rgba(255,255,255,0.15); transform: translateY(-3px); }
+    .hero-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      z-index: 4; background: rgba(255,255,255,0.15); backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.3); color: white;
+      width: 46px; height: 46px; border-radius: 50%; font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: var(--transition);
+    }
+    .hero-arrow:hover { background: rgba(255,255,255,0.3); }
+    #heroPrev { left: 24px; }
+    #heroNext { right: 24px; }
+    .hero-dots {
+      position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+      z-index: 4; display: flex; gap: 8px;
+    }
+    .hero-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,0.4); cursor: pointer; transition: var(--transition);
+    }
+    .hero-dot.active { background: var(--white); width: 24px; border-radius: 4px; }
+    @media(max-width:640px){ .hero{ height: 65vh; min-height:400px; } }
+
+    /* ===== STATS STRIP ===== */
+    .stats-strip {
+      background: var(--green-dark);
+      padding: 28px 40px;
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+    .stat-item { text-align: center; color: var(--white); }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      font-weight: 900;
+      color: var(--gold);
+      display: block;
+      line-height: 1;
+    }
+    .stat-lbl { font-size: 0.82rem; letter-spacing: 1px; text-transform: uppercase; opacity: 0.8; margin-top: 4px; }
+    @media(max-width:640px){ .stats-strip{ gap:32px; padding:24px 20px; } .stat-num{font-size:1.8rem;} }
+
+    /* ===== SECTION COMMON ===== */
+    .section { padding: 96px 24px; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      display: inline-block;
+      color: var(--green);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .section-subtitle { color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; max-width: 600px; }
+    .section-header { text-align: center; margin-bottom: 64px; }
+    .section-header .section-subtitle { margin: 0 auto; }
+    .divider {
+      width: 56px; height: 4px;
+      background: linear-gradient(90deg, var(--green), var(--gold));
+      border-radius: 2px; margin: 16px auto 0;
+    }
+    .divider-left { margin: 16px 0 0; }
+
+    /* ===== ABOUT ===== */
+    #about { background: var(--off-white); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .about-img-stack {
+      position: relative;
+      height: 420px;
+    }
+    .about-img-main {
+      position: absolute;
+      right: 0; bottom: 0;
+      width: 80%; height: 85%;
+      object-fit: cover;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+    }
+    .about-img-accent {
+      position: absolute;
+      left: 0; top: 0;
+      width: 52%; height: 55%;
+      object-fit: cover;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      border: 4px solid var(--white);
+    }
+    .about-badge {
+      position: absolute;
+      bottom: 30px; left: -10px;
+      background: var(--green);
+      color: var(--white);
+      padding: 16px 20px;
+      border-radius: var(--radius);
+      text-align: center;
+      box-shadow: var(--shadow-md);
+      z-index: 2;
+    }
+    .about-badge strong { display: block; font-size: 1.8rem; font-family:'Playfair Display',serif; }
+    .about-badge span { font-size: 0.75rem; opacity:0.85; text-transform:uppercase; letter-spacing:1px; }
+    .about-text p { color: var(--text-muted); line-height: 1.8; margin-bottom: 18px; font-size: 1.02rem; }
+    .about-text p:first-of-type { color: var(--text); font-size: 1.05rem; }
+    .about-more { display: none; }
+    .btn-read-more {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--green); font-weight: 600; font-size: 0.95rem;
+      border: 2px solid var(--green); padding: 10px 24px; border-radius: 50px;
+      margin-top: 8px; transition: var(--transition); cursor: pointer; background: none;
+    }
+    .btn-read-more:hover { background: var(--green); color: var(--white); }
+    .about-features { display: flex; gap: 24px; margin-top: 28px; flex-wrap: wrap; }
+    .about-feat {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.9rem; font-weight: 500; color: var(--green-dark);
+    }
+    .about-feat i { color: var(--green); font-size: 1.1rem; }
+    @media(max-width:900px){
+      .about-grid{grid-template-columns:1fr; gap:40px;}
+      .about-img-stack{height:280px;}
+    }
+
+    /* ===== CAUSES ===== */
+    #causes { background: var(--white); }
+    .causes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .cause-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+      transition: transform var(--transition), box-shadow var(--transition);
+      display: flex; flex-direction: column;
+    }
+    .cause-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); }
+    .cause-card-img {
+      position: relative; height: 200px; overflow: hidden;
+    }
+    .cause-card-img img { width:100%; height:100%; object-fit:cover; transition: transform 0.5s ease; }
+    .cause-card:hover .cause-card-img img { transform: scale(1.06); }
+    .cause-icon {
+      position: absolute; bottom: -18px; left: 20px;
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--green); color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; box-shadow: var(--shadow-sm);
+      z-index: 2;
+    }
+    .cause-card-body { padding: 32px 22px 24px; flex:1; }
+    .cause-card-body h3 { font-family:'Playfair Display',serif; font-size:1.18rem; font-weight:700; margin-bottom:10px; color: var(--text); }
+    .cause-card-body p { color: var(--text-muted); font-size:0.91rem; line-height:1.7; }
+    .cause-progress { margin-top: 18px; }
+    .cause-progress-bar { height:5px; background: #e8f5e9; border-radius:3px; overflow:hidden; }
+    .cause-progress-fill { height:100%; background: linear-gradient(90deg, var(--green), var(--green-light)); border-radius:3px; }
+    .cause-progress-label { display:flex; justify-content:space-between; font-size:0.76rem; color:var(--text-muted); margin-top:6px; }
+    @media(max-width:900px){ .causes-grid{grid-template-columns:repeat(2,1fr);} }
+    @media(max-width:580px){ .causes-grid{grid-template-columns:1fr;} }
+
+    /* ===== IMPACT / CTA BAND ===== */
+    .impact-band {
+      background: linear-gradient(135deg, var(--green-dark) 0%, #0d5f32 60%, #1a3a2a 100%);
+      color: var(--white);
+      padding: 80px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .impact-band::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .impact-band h2 { font-family:'Playfair Display',serif; font-size:clamp(1.8rem,4vw,2.8rem); font-weight:900; margin-bottom:16px; position:relative; }
+    .impact-band p { font-size:1.05rem; opacity:0.85; max-width:600px; margin:0 auto 36px; position:relative; }
+    .btn-donate-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--gold); color: var(--white);
+      padding: 16px 40px; border-radius: 50px;
+      font-weight: 700; font-size: 1rem;
+      box-shadow: 0 8px 24px rgba(232,160,32,0.4);
+      transition: var(--transition); cursor: pointer; border: none;
+      position: relative;
+    }
+    .btn-donate-cta:hover { background: #d48f10; transform: translateY(-3px); color: var(--white); }
+
+    /* ===== BLOG ===== */
+    #blog { background: var(--off-white); }
+    .blog-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px;
+    }
+    .blog-card {
+      background: var(--white); border-radius: var(--radius);
+      overflow: hidden; box-shadow: var(--shadow-sm); border: 1px solid var(--border);
+      display: flex; flex-direction: column;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .blog-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+    .blog-img { height: 220px; overflow: hidden; background: #f0f0ee; }
+    .blog-img img { width:100%; height:100%; object-fit:cover; transition: transform 0.5s ease; }
+    .blog-card:hover .blog-img img { transform: scale(1.05); }
+    .blog-img-placeholder {
+      width:100%; height:100%; display:flex; align-items:center; justify-content:center;
+      background: linear-gradient(135deg, #f2faf4, #fef2f2); color:#ccc; font-size:2.5rem;
+    }
+    .blog-body { padding: 28px; flex:1; display:flex; flex-direction:column; }
+    .blog-tag {
+      display: inline-block; background: #fef2f2; color: var(--red);
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.8px;
+      text-transform: uppercase; padding: 4px 12px; border-radius: 20px;
+      border: 1px solid #fcd5d5; margin-bottom: 14px;
+    }
+    .blog-body h3 { font-family:'Playfair Display',serif; font-size:1.2rem; font-weight:700; margin-bottom:12px; line-height:1.4; }
+    .blog-body p { color:var(--text-muted); font-size:0.91rem; line-height:1.75; flex:1; }
+    .blog-meta-row { display:flex; gap:16px; flex-wrap:wrap; padding-top:16px; margin-top:16px; border-top:1px solid var(--border); }
+    .blog-meta-row span { font-size:0.8rem; color:var(--text-muted); display:flex; align-items:center; gap:5px; }
+    .blog-meta-row i { color:var(--red); }
+    .blog-read-more {
+      display:inline-flex; align-items:center; gap:6px;
+      color:var(--green); font-weight:600; font-size:0.87rem;
+      margin-top:14px; transition: gap var(--transition);
+    }
+    .blog-read-more:hover { gap:10px; color:var(--green-dark); }
+    .blog-twitter-section { margin-top: 64px; }
+    .blog-twitter-section h3 {
+      text-align:center; font-family:'Playfair Display',serif;
+      font-size:1.4rem; margin-bottom:8px; color:var(--green-dark);
+    }
+    .blog-twitter-label { text-align:center; font-size:0.75rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--green); margin-bottom:28px; }
+    .twitter-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; }
+    .twitter-grid blockquote.twitter-tweet { margin:0 !important; }
+    @media(max-width:700px){ .blog-grid{grid-template-columns:1fr;} }
+
+    /* ===== CONTACT ===== */
+    #contact { background: var(--white); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    .contact-info-list { list-style:none; margin-top: 28px; display:flex; flex-direction:column; gap:20px; }
+    .contact-info-item { display:flex; align-items:flex-start; gap:16px; }
+    .contact-icon-wrap {
+      width:44px; height:44px; border-radius:12px;
+      background: #f0faf4; color:var(--green);
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.1rem; flex-shrink:0;
+    }
+    .contact-info-item strong { display:block; font-size:0.85rem; font-weight:600; color:var(--text); margin-bottom:2px; }
+    .contact-info-item a, .contact-info-item span { color:var(--text-muted); font-size:0.92rem; transition:color var(--transition); }
+    .contact-info-item a:hover { color:var(--green); }
+    .contact-socials { display:flex; gap:12px; margin-top: 32px; flex-wrap:wrap; }
+    .social-btn {
+      width:42px; height:42px; border-radius:10px;
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.1rem; background: var(--off-white);
+      color: var(--text-muted); transition: var(--transition);
+    }
+    .social-btn:hover { background:var(--green); color:var(--white); transform:translateY(-3px); }
+    .whatsapp-big-btn {
+      display:inline-flex; align-items:center; gap:10px;
+      background:#25D366; color:white; padding:13px 26px;
+      border-radius:50px; font-weight:600; font-size:0.95rem;
+      margin-top:20px; transition: var(--transition);
+      box-shadow: 0 4px 14px rgba(37,211,102,0.3);
+    }
+    .whatsapp-big-btn:hover { background:#1aad52; transform:translateY(-2px); color:white; }
+
+    /* Contact form card */
+    .contact-form-card {
+      background: var(--off-white);
+      border-radius: 20px; padding: 40px; border: 1px solid var(--border);
+    }
+    .contact-form-card h3 { font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:700; margin-bottom:8px; }
+    .contact-form-card p { color:var(--text-muted); font-size:0.91rem; margin-bottom:28px; }
+    .form-field { margin-bottom:18px; }
+    .form-field label { display:block; font-size:0.85rem; font-weight:600; margin-bottom:6px; color:var(--text); }
+    .form-field input, .form-field textarea, .form-field select {
+      width:100%; padding:12px 16px; border:1.5px solid var(--border);
+      border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.93rem;
+      color:var(--text); background:var(--white); outline:none;
+      transition: border-color var(--transition);
+    }
+    .form-field input:focus, .form-field textarea:focus { border-color:var(--green); }
+    .form-field textarea { resize:vertical; min-height:110px; }
+    .btn-submit {
+      width:100%; padding:13px; background:var(--green); color:var(--white);
+      border:none; border-radius:10px; font-family:'DM Sans',sans-serif;
+      font-size:1rem; font-weight:600; cursor:pointer; transition: var(--transition);
+    }
+    .btn-submit:hover { background:var(--green-dark); }
+    @media(max-width:860px){ .contact-grid{grid-template-columns:1fr; gap:36px;} }
+
+    /* ===== FOOTER ===== */
+    .site-footer { background: var(--green-dark); color: rgba(255,255,255,0.85); }
+    .footer-main {
+      max-width:1200px; margin:0 auto;
+      display:grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap:48px; padding: 72px 24px 48px;
+    }
+    .footer-brand-logo { width:60px; height:60px; border-radius:50%; object-fit:contain; margin-bottom:16px; }
+    .footer-brand-name { font-family:'Playfair Display',serif; font-size:1.2rem; font-weight:700; color:white; margin-bottom:6px; }
+    .footer-brand-tagline { font-size:0.85rem; color:var(--gold); margin-bottom:14px; letter-spacing:0.5px; }
+    .footer-brand-desc { font-size:0.88rem; line-height:1.7; max-width:260px; }
+    .footer-col h4 { color:white; font-size:0.92rem; font-weight:700; letter-spacing:0.5px; margin-bottom:20px; }
+    .footer-col ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
+    .footer-col ul li a { color:rgba(255,255,255,0.7); font-size:0.88rem; transition:color var(--transition); display:flex; align-items:center; gap:8px; }
+    .footer-col ul li a:hover { color:var(--gold); }
+    .footer-col ul li a i { width:14px; }
+    .footer-socials { display:flex; gap:10px; margin-top:8px; flex-wrap:wrap; }
+    .footer-social-btn {
+      width:36px; height:36px; border-radius:8px;
+      background:rgba(255,255,255,0.1); color:rgba(255,255,255,0.7);
+      display:flex; align-items:center; justify-content:center;
+      font-size:0.95rem; transition: var(--transition);
+    }
+    .footer-social-btn:hover { background:var(--gold); color:white; }
+    .footer-bottom {
+      background: rgba(0,0,0,0.3);
+      text-align:center; padding:18px 24px;
+      font-size:0.83rem; color:rgba(255,255,255,0.55);
+      display:flex; justify-content:center; align-items:center; gap:24px; flex-wrap:wrap;
+    }
+    .footer-bottom a { color:rgba(255,255,255,0.55); transition:color var(--transition); }
+    .footer-bottom a:hover { color:var(--gold); }
+    @media(max-width:900px){
+      .footer-main{grid-template-columns:1fr 1fr; gap:32px;}
+    }
+    @media(max-width:580px){
+      .footer-main{grid-template-columns:1fr; padding:40px 20px 32px;}
+    }
+
+    /* ===== DONATE MODAL ===== */
+    .modal-donate .modal-header {
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+      color: white; border-radius: 16px 16px 0 0; padding: 22px 28px;
+    }
+    .modal-donate .modal-content { border-radius: 16px; border: none; overflow: hidden; }
+    .modal-donate .modal-title { font-family:'Playfair Display',serif; font-size:1.2rem; font-weight:700; }
+    .donate-method {
+      background: var(--off-white); border-radius: 12px;
+      padding: 16px 20px; display:flex; align-items:center; gap:14px;
+      border: 1.5px solid var(--border); margin-bottom:12px; transition: var(--transition);
+    }
+    .donate-method:hover { border-color:var(--green); background:#f0faf4; }
+    .donate-method-icon {
+      width:42px; height:42px; border-radius:10px;
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.2rem; flex-shrink:0;
+    }
+    .donate-method-icon.airtel { background:#fef3e2; color:#e65c00; }
+    .donate-method-icon.mtn { background:#fff8e1; color:#f59f00; }
+    .donate-method-icon.bank { background:#e3f2fd; color:#1565c0; }
+    .donate-method-label { font-weight:700; font-size:0.9rem; color:var(--text); margin-bottom:2px; }
+    .donate-method-number { font-size:1.05rem; font-weight:700; color:var(--green-dark); letter-spacing:1px; }
+    .donate-method-name { font-size:0.78rem; color:var(--text-muted); }
+    .donate-note {
+      background: linear-gradient(135deg, #f0faf4, #fef2e3);
+      border-radius: 10px; padding:14px 18px; text-align:center;
+      font-size:0.88rem; color:var(--green-dark); font-weight:500;
+      margin-top:8px; border:1px solid #c8e6c9;
+    }
+
+    /* ===== BACK TO TOP ===== */
+    #backTop {
+      position: fixed; bottom:28px; right:28px; z-index:999;
+      width:44px; height:44px; border-radius:50%;
+      background:var(--green); color:white; border:none;
+      display:flex; align-items:center; justify-content:center;
+      font-size:1rem; cursor:pointer;
+      box-shadow: 0 4px 16px rgba(15,123,63,0.4);
+      opacity:0; pointer-events:none; transition: var(--transition);
+    }
+    #backTop.visible { opacity:1; pointer-events:auto; }
+    #backTop:hover { background:var(--green-dark); transform:translateY(-3px); }
+
+    /* ===== SCROLL ANIMATIONS ===== */
+    [data-reveal] { opacity:0; transform:translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    [data-reveal].revealed { opacity:1; transform:translateY(0); }
+    [data-reveal="left"] { transform: translateX(-30px); }
+    [data-reveal="left"].revealed { transform: translateX(0); }
+    [data-reveal="right"] { transform: translateX(30px); }
+    [data-reveal="right"].revealed { transform: translateX(0); }
+  </style>
+</head>
 <body>
-    <div class="top">
-        <div class="top1">
-          <a href="tel:+256703204351"><i class="fa-solid fa-phone"></i> <label> +256703204351             |</label></a>  
-          <a href="mailto:wagumalifereachuganda@gmail.com"><i class="fa-solid fa-envelope"></i>   <label>wagumalifereachuganda@gmail.com             |</label></a> 
-        </div>
-      <div class="top2">
-         <a href="https://www.facebook.com/WagumaLifeReachUgand/"><i class="fa-brands fa-facebook"></i></a>
-         <a href="https://x.com/lifereachUg"><i class="fa-brands fa-twitter"></i></a>    
-         <a href="https://www.instagram.com/wagumalifereachuganda/"><i class="fa-brands fa-instagram"></i></a>
-         <a href="mailto:wagumalifereachuganda@gmail.com"><i class="fa-solid fa-envelope"></i>
-         <a href="#"><i class="fa-brands fa-tiktok"></i></a>
-      </div>
-    </div>
-    <br>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="index.html"><img style="width: 40px; height:40px; margin-left:15px;" src="logo.png"></a> <h2 class="mobile-title">Waguma Life Reach Ug</h2>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-item nav-link active" href="index.html">Home</a>
-          <a class="nav-item nav-link" href="#about-us">About us</a>
-          <a class="nav-item nav-link" href="#realblog">Blog</a>
-          <a class="nav-item nav-link " href="#contact-us">Contact us</a>
-          <a class="nav-item nav-link " href="gallery.html">Gallery</a>
-        </div>
-        <button type="button" class="btn btn-success" style="margin-left: 60%;" data-bs-toggle="modal" data-bs-target="#donateModal">DONATE</button>
-        <!-- DONATE Modal BUTTON -->
-   
-
-      </div>
-    </nav>
-
-    
-    <!-- Banner Section Start -->
-<div class="banner-container">
-  <div class="banner-overlay"></div>
-  <div class="banner-content">
-    <h1>WAGUMA LIFE OUTREACH UG</h1>
-    <p>Healing, Hope, and Humanity for Uganda's Communities</p>
+<!-- ===== TOPBAR ===== -->
+<div class="topbar">
+  <div class="topbar-left">
+    <a href="tel:+256703204351"><i class="fa-solid fa-phone"></i> +256 703 204351</a>
+    <a href="mailto:wagumalifereachuganda@gmail.com"><i class="fa-solid fa-envelope"></i> wagumalifereachuganda@gmail.com</a>
   </div>
-  <button class="banner-arrow" id="bannerPrev"><i class="fa-solid fa-chevron-left"></i></button>
-  <button class="banner-arrow" id="bannerNext"><i class="fa-solid fa-chevron-right"></i></button>
+  <div class="topbar-right">
+    <a href="https://www.facebook.com/WagumaLifeReachUgand/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+    <a href="https://x.com/lifereachUg" target="_blank" rel="noopener" aria-label="Twitter/X"><i class="fa-brands fa-x-twitter"></i></a>
+    <a href="https://www.instagram.com/wagumalifereachuganda/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+    <a href="https://wa.me/256703204351" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+    <a href="#" target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+  </div>
 </div>
-<!-- Banner Section End -->
 
-<!--WHO WE AREee -->
-<section id="about-us">
-    <div class="about-us-container">
-        <h2>Who We Are</h2>
+<!-- ===== NAVBAR ===== -->
+<nav class="site-nav" role="navigation" aria-label="Main navigation">
+  <a href="index.html" class="nav-brand">
+    <img src="logo.png" alt="Waguma Life Outreach Uganda Logo">
+    <span>Waguma Life<small>Outreach Uganda</small></span>
+  </a>
+  <button class="nav-hamburger" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home" class="active">Home</a></li>
+    <li><a href="#about">About Us</a></li>
+    <li><a href="#causes">Our Causes</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#" class="nav-donate" data-bs-toggle="modal" data-bs-target="#donateModal"><i class="fa-solid fa-heart"></i> Donate</a></li>
+  </ul>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="home" aria-label="Hero banner">
+  <div class="hero-slide active" aria-hidden="true"></div>
+  <div class="hero-slide" aria-hidden="true"></div>
+  <div class="hero-slide" aria-hidden="true"></div>
+  <div class="hero-slide" aria-hidden="true"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow"><i class="fa-solid fa-heart-pulse"></i> &nbsp;Healing · Hope · Humanity</div>
+    <h1>Transforming Lives<br>Across Uganda</h1>
+    <p>Waguma Life Outreach Uganda brings free medical care, youth empowerment, and humanitarian support to vulnerable communities.</p>
+    <div class="hero-btns">
+      <a href="#causes" class="btn-hero-primary">Explore Our Work</a>
+      <a href="#" class="btn-hero-outline" data-bs-toggle="modal" data-bs-target="#donateModal"><i class="fa-solid fa-hand-holding-heart"></i> Donate Today</a>
+    </div>
+  </div>
+  <button class="hero-arrow" id="heroPrev" aria-label="Previous slide"><i class="fa-solid fa-chevron-left"></i></button>
+  <button class="hero-arrow" id="heroNext" aria-label="Next slide"><i class="fa-solid fa-chevron-right"></i></button>
+  <div class="hero-dots" role="tablist" aria-label="Slide indicators">
+    <button class="hero-dot active" role="tab" aria-label="Slide 1"></button>
+    <button class="hero-dot" role="tab" aria-label="Slide 2"></button>
+    <button class="hero-dot" role="tab" aria-label="Slide 3"></button>
+    <button class="hero-dot" role="tab" aria-label="Slide 4"></button>
+  </div>
+</section>
+
+<!-- ===== STATS STRIP ===== -->
+<div class="stats-strip" data-reveal>
+  <div class="stat-item"><span class="stat-num" data-count="1000">0</span><span class="stat-lbl">Lives Touched</span></div>
+  <div class="stat-item"><span class="stat-num" data-count="36">0</span><span class="stat-lbl">Outreach Events</span></div>
+  <div class="stat-item"><span class="stat-num" data-count="7">0</span><span class="stat-lbl">Core Programs</span></div>
+  <div class="stat-item"><span class="stat-num" data-count="5">0</span><span class="stat-lbl">Districts Reached</span></div>
+</div>
+
+<!-- ===== ABOUT US ===== -->
+<section class="section" id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-img-stack" data-reveal="left">
+        <img class="about-img-main" src="ds10.jpg.jpeg" alt="Medical outreach team at work" onerror="this.src=''; this.style='background:linear-gradient(135deg,#e8f5e9,#c8e6c9); border-radius:16px;'">
+        <img class="about-img-accent" src="ds4.jpg.jpeg" alt="Community engagement" onerror="this.src=''; this.style='background:linear-gradient(135deg,#fce4ec,#f8bbd0); border-radius:16px;'">
+        <div class="about-badge">
+          <strong>5+</strong>
+          <span>Years of Impact</span>
+        </div>
+      </div>
+      <div class="about-text" data-reveal="right">
+        <span class="section-label">Who We Are</span>
+        <h2 class="section-title">A Heart for Uganda's<br>Vulnerable Communities</h2>
+        <div class="divider divider-left"></div>
+        <br>
         <p>Waguma Life Reach Uganda (WLRU) is a non-profit organization dedicated to improving the lives of vulnerable communities across Uganda. Guided by our vision of building empowered, healthy, and self-reliant communities, we work to ensure that every individual—especially young people—can thrive with dignity and equal access to opportunities.</p>
         <p>Our mission is to transform lives through medical outreach, youth empowerment, Sexual and Reproductive Health and Rights (SRHR) education, humanitarian support, and strategic partnerships that promote health, social justice, and sustainable development.</p>
-        <div id="about-more" style="display:none;">
+        <div class="about-more" id="aboutMore">
           <p>Over the years, we have remained committed to providing essential services such as healthcare, education, and economic empowerment, while addressing the root causes of poverty and inequality. Our work is driven by a passionate team dedicated to creating lasting impact and meaningful change.</p>
           <p>We strongly believe in the power of community and collaboration, working closely with local partners to deliver culturally relevant and effective programs. Through unity and shared purpose, we continue to bring healing, hope, and humanity to the communities we serve.</p>
         </div>
-        <p><a href="#" id="about-read-more" class="read-more">Read more</a></p>
-      </div>
-
-</section>
-<!-- Causes Section Start -->
-<section id="causes">
-  <div class="causes-header">
-    <h2>Explore our latest causes that we work on</h2>
-    <p>Discover our core initiatives making a difference in Ugandan communities.</p>
-  </div>
-  <div class="causes-cards">
-    
-    <!-- Medical Camps Card -->
-    <div class="cause-card">
-      <div class="cause-icon-badge">
-        <i class="fa-solid fa-hospital"></i>
-      </div>
-      <img src="12.jpg" alt="Medical Camps">
-      <div class="cause-card-body">
-        <h3>Free Medical Camps</h3>
-        <p>Organizing free medical camps for rural and underserved communities to improve access to healthcare.</p>
+        <button class="btn-read-more" id="readMoreBtn">
+          <span id="readMoreText">Read More</span> <i class="fa-solid fa-arrow-right" id="readMoreIcon"></i>
+        </button>
+        <div class="about-features">
+          <div class="about-feat"><i class="fa-solid fa-check-circle"></i> Medical Outreach</div>
+          <div class="about-feat"><i class="fa-solid fa-check-circle"></i> Youth Empowerment</div>
+          <div class="about-feat"><i class="fa-solid fa-check-circle"></i> SRHR Education</div>
+          <div class="about-feat"><i class="fa-solid fa-check-circle"></i> Humanitarian Aid</div>
+        </div>
       </div>
     </div>
-
-    <!-- Youth Empowerment Card -->
-    <div class="cause-card">
-      <div class="cause-icon-badge">
-        <i class="fa-solid fa-person-hiking"></i>
-      </div>
-      <img src="3.jpg" alt="Youth Empowerment">
-      <div class="cause-card-body">
-        <h3>Youth Empowerment</h3>
-        <p>Conducting youth empowerment programs, especially for the boy child, to foster leadership and growth.</p>
-      </div>
-    </div>
-
-    <!-- Humanitarian Support Card -->
-    <div class="cause-card">
-      <div class="cause-icon-badge">
-        <i class="fa-solid fa-hand-holding-heart"></i>
-      </div>
-      <img src="9.jpg" alt="Humanitarian Support">
-      <div class="cause-card-body">
-        <h3>Humanitarian Support</h3>
-        <p>Offering humanitarian support through food, clothing, and educational materials for those in need.</p>
-      </div>
-    </div>
-
-    <!-- Culture of Giving Card -->
-    <div class="cause-card">
-      <div class="cause-icon-badge">
-        <i class="fa-solid fa-gift"></i>
-      </div>
-      <img src="8.jpg" alt="Culture of Giving">
-      <div class="cause-card-body">
-        <h3>Culture of Giving</h3>
-        <p>Promoting generosity by transforming celebrations into acts of kindness that positively impact communities.</p>
-      </div>
-    </div>
-
-    <!-- Building Partnerships Card -->
-    <div class="cause-card">
-      <div class="cause-icon-badge">
-        <i class="fa-solid fa-handshake"></i>
-      </div>
-      <img src="7.jpg" alt="Partnerships">
-      <div class="cause-card-body">
-        <h3>Building Partnerships</h3>
-        <p>Building partnerships with medical, faith-based, and community organizations for greater impact.</p>
-      </div>
-    </div>
-
-    <!-- Public Awareness Card -->
-    <div class="cause-card">
-      <div class="cause-icon-badge">
-        <i class="fa-solid fa-bullhorn"></i>
-      </div>
-      <img src="ds12.jpg.jpeg" alt="Public Awareness">
-      <div class="cause-card-body">
-        <h3>Public Awareness</h3>
-        <p>Promoting public awareness of preventable diseases and mental health through outreach and education.</p>
-      </div>
-    </div>
-
-    <!-- Mentorship Card -->
-    <div class="cause-card">
-      <div class="cause-icon-badge">
-        <i class="fa-solid fa-users"></i>
-      </div>
-      <img src="ds36.jpg.jpeg" alt="Mentorship">
-      <div class="cause-card-body">
-        <h3>Mentorship</h3>
-        <p>Mentoring volunteers and youth leaders who share the organization's vision for a brighter future.</p>
-      </div>
-    </div>
-
   </div>
 </section>
-<!-- Causes Section End -->
 
+<!-- ===== CAUSES ===== -->
+<section class="section" id="causes">
+  <div class="section-inner">
+    <div class="section-header" data-reveal>
+      <span class="section-label">What We Do</span>
+      <h2 class="section-title">Our Core Causes</h2>
+      <div class="divider"></div>
+      <p class="section-subtitle" style="margin-top:16px;">Discover the key initiatives driving real, lasting change across Ugandan communities.</p>
+    </div>
+    <div class="causes-grid">
 
-<!--/* FIRST BLOG*-->
+      <div class="cause-card" data-reveal>
+        <div class="cause-card-img">
+          <img src="12.jpg" alt="Free Medical Camps" onerror="this.style='display:none'">
+          <div class="cause-icon"><i class="fa-solid fa-hospital"></i></div>
+        </div>
+        <div class="cause-card-body">
+          <h3>Free Medical Camps</h3>
+          <p>Organizing free medical camps for rural and underserved communities to improve access to essential healthcare services.</p>
+          <div class="cause-progress">
+            <div class="cause-progress-bar"><div class="cause-progress-fill" style="width:78%"></div></div>
+            <div class="cause-progress-label"><span>Goal: Reach 500 patients/camp</span><span>78%</span></div>
+          </div>
+        </div>
+      </div>
 
-<div id="realblog" class="blogpost" style="margin-bottom: 0;">
-  <h3>Latest Blog Post</h3>
-  <p>COMING SOON</p>
-  <a href="https://katoemmanganda.blogspot.com/2026/04/kato.html" target="_blank">
-    Read Full Post →
-  </a>
+      <div class="cause-card" data-reveal>
+        <div class="cause-card-img">
+          <img src="3.jpg" alt="Youth Empowerment" onerror="this.style='display:none'">
+          <div class="cause-icon"><i class="fa-solid fa-person-hiking"></i></div>
+        </div>
+        <div class="cause-card-body">
+          <h3>Youth Empowerment</h3>
+          <p>Conducting youth empowerment programs, especially for the boy child, to foster leadership, life skills, and positive growth.</p>
+          <div class="cause-progress">
+            <div class="cause-progress-bar"><div class="cause-progress-fill" style="width:65%"></div></div>
+            <div class="cause-progress-label"><span>Goal: 300 youth/year</span><span>65%</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cause-card" data-reveal>
+        <div class="cause-card-img">
+          <img src="9.jpg" alt="Humanitarian Support" onerror="this.style='display:none'">
+          <div class="cause-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+        </div>
+        <div class="cause-card-body">
+          <h3>Humanitarian Support</h3>
+          <p>Offering humanitarian support through food, clothing, educational materials, and essential items for those most in need.</p>
+          <div class="cause-progress">
+            <div class="cause-progress-bar"><div class="cause-progress-fill" style="width:55%"></div></div>
+            <div class="cause-progress-label"><span>Goal: 200 families/month</span><span>55%</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cause-card" data-reveal>
+        <div class="cause-card-img">
+          <img src="8.jpg" alt="Culture of Giving" onerror="this.style='display:none'">
+          <div class="cause-icon" style="background:var(--gold)"><i class="fa-solid fa-gift"></i></div>
+        </div>
+        <div class="cause-card-body">
+          <h3>Culture of Giving</h3>
+          <p>Promoting generosity by transforming celebrations into meaningful acts of kindness that positively impact communities.</p>
+          <div class="cause-progress">
+            <div class="cause-progress-bar"><div class="cause-progress-fill" style="width:90%"></div></div>
+            <div class="cause-progress-label"><span>Community engagement</span><span>90%</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cause-card" data-reveal>
+        <div class="cause-card-img">
+          <img src="7.jpg" alt="Building Partnerships" onerror="this.style='display:none'">
+          <div class="cause-icon" style="background:var(--red)"><i class="fa-solid fa-handshake"></i></div>
+        </div>
+        <div class="cause-card-body">
+          <h3>Building Partnerships</h3>
+          <p>Building partnerships with medical, faith-based, and community organizations to achieve greater collective impact.</p>
+          <div class="cause-progress">
+            <div class="cause-progress-bar"><div class="cause-progress-fill" style="width:72%"></div></div>
+            <div class="cause-progress-label"><span>Goal: 20 partners</span><span>72%</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cause-card" data-reveal>
+        <div class="cause-card-img">
+          <img src="ds12.jpg.jpeg" alt="Public Awareness" onerror="this.style='display:none'">
+          <div class="cause-icon" style="background:#1565c0"><i class="fa-solid fa-bullhorn"></i></div>
+        </div>
+        <div class="cause-card-body">
+          <h3>Public Awareness</h3>
+          <p>Promoting awareness of preventable diseases, mental health, and reproductive rights through community outreach and education.</p>
+          <div class="cause-progress">
+            <div class="cause-progress-bar"><div class="cause-progress-fill" style="width:83%"></div></div>
+            <div class="cause-progress-label"><span>Community reach</span><span>83%</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== IMPACT BAND ===== -->
+<div class="impact-band">
+  <h2 data-reveal>Your Donation Changes Lives</h2>
+  <p data-reveal>Every shilling you contribute goes directly to medical camps, youth programs, and humanitarian aid for Uganda's most vulnerable.</p>
+  <button class="btn-donate-cta" data-bs-toggle="modal" data-bs-target="#donateModal" data-reveal>
+    <i class="fa-solid fa-hand-holding-heart"></i> Make a Donation Today
+  </button>
 </div>
 
-   <!-- Blog Section Start -->
+<!-- ===== BLOG ===== -->
+<section class="section" id="blog">
+  <div class="section-inner">
+    <div class="section-header" data-reveal>
+      <span class="section-label">Latest Updates</span>
+      <h2 class="section-title">From Our Outreach Blog</h2>
+      <div class="divider"></div>
+      <p class="section-subtitle" style="margin-top:16px;">Stories, updates, and highlights from our recent charity projects and medical camps.</p>
+    </div>
+    <div class="blog-grid">
 
-<section id="blog" style="margin-bottom: 0;">
-  <div class="blog-header">
-    <h2>Latest From Our Outreach Blog</h2>
-    <p>Stories, updates, and highlights from our recent charity projects and medical camps.</p>
-  </div>
-
-  <div class="blog-cards">
-    <article class="blog-card">
-      <div class="blog-img-wrap">
-        <img src="event1.jpg" alt="Mpigi Medical Camp - Community Screening"
-          onerror="this.parentElement.innerHTML='<div class=\'blog-img-placeholder\'><i class=\'fa-solid fa-heart-pulse\'></i></div>'">
-      </div>
-      <div class="blog-body">
-        <span class="blog-card-tag-top">Medical Camp</span>
-        <h3>Mpigi Medical Camp: Screening & Support</h3>
-        <p>On November 2, 2025, Waguma Life Outreach UG and Elsa Africa hosted a medical camp in Nakilebe, Mpigi. Community members received free screening for TB, sickle cell, malaria, dental, and cancer — plus essential items including clothes, school fees, shelter, soap, and Maam Kits.</p>
-        <ul class="blog-tags">
-          <li>Medical Outreach</li>
-          <li>Community Impact</li>
-          <li>Health Screening</li>
-        </ul>
-        <div class="blog-meta">
-          <span><i class="fa-solid fa-calendar-days"></i> 02/11/2025</span>
-          <span><i class="fa-solid fa-location-dot"></i> Nakilebe, Mpigi</span>
+      <article class="blog-card" data-reveal>
+        <div class="blog-img">
+          <img src="event1.jpg" alt="Mpigi Medical Camp"
+            onerror="this.parentElement.innerHTML='<div class=\'blog-img-placeholder\'><i class=\'fa-solid fa-heart-pulse\'></i></div>'">
         </div>
-        <a href="#" class="blog-read-more">Read full story <i class="fa-solid fa-arrow-right"></i></a>
-      </div>
-    </article>
-
-    <article class="blog-card">
-      <div class="blog-img-wrap">
-        <img src="event2.jpg" alt="Volunteer Engagement & Mentorship"
-          onerror="this.parentElement.innerHTML='<div class=\'blog-img-placeholder\'><i class=\'fa-solid fa-hands-holding-child\'></i></div>'">
-      </div>
-      <div class="blog-body">
-        <span class="blog-card-tag-top">Youth & Volunteers</span>
-        <h3>Empowering Youth & Volunteers</h3>
-        <p>Our outreach events are more than medical camps — they are platforms for mentorship and youth empowerment. Volunteers engage with local children, distributing educational materials and inspiring a culture of giving. Through collaboration with the Ministry of Health, we build a healthier Uganda.</p>
-        <ul class="blog-tags">
-          <li>Youth Empowerment</li>
-          <li>Volunteer Stories</li>
-          <li>Charity Partnerships</li>
-        </ul>
-        <div class="blog-meta">
-          <span><i class="fa-solid fa-calendar-days"></i> 02/11/2025</span>
-          <span><i class="fa-solid fa-users"></i> Volunteers & Partners</span>
+        <div class="blog-body">
+          <span class="blog-tag">Medical Camp</span>
+          <h3>Mpigi Medical Camp: Screening &amp; Support</h3>
+          <p>On November 2, 2025, Waguma Life Outreach UG and Elsa Africa hosted a medical camp in Nakilebe, Mpigi. Community members received free screening for TB, sickle cell, malaria, dental, and cancer — plus essential items including clothes, school fees, shelter, soap, and Maam Kits.</p>
+          <ul style="list-style:none;display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;">
+            <li style="font-size:0.76rem;font-weight:600;color:var(--green);background:#f2faf4;border:1px solid #c8e6c9;padding:3px 10px;border-radius:20px;">Medical Outreach</li>
+            <li style="font-size:0.76rem;font-weight:600;color:var(--green);background:#f2faf4;border:1px solid #c8e6c9;padding:3px 10px;border-radius:20px;">Community Impact</li>
+            <li style="font-size:0.76rem;font-weight:600;color:var(--green);background:#f2faf4;border:1px solid #c8e6c9;padding:3px 10px;border-radius:20px;">Health Screening</li>
+          </ul>
+          <div class="blog-meta-row">
+            <span><i class="fa-solid fa-calendar-days"></i> 02/11/2025</span>
+            <span><i class="fa-solid fa-location-dot"></i> Nakilebe, Mpigi</span>
+          </div>
+          <a href="#" class="blog-read-more">Read full story <i class="fa-solid fa-arrow-right"></i></a>
         </div>
-        <a href="#" class="blog-read-more">Read full story <i class="fa-solid fa-arrow-right"></i></a>
+      </article>
+
+      <article class="blog-card" data-reveal>
+        <div class="blog-img">
+          <img src="event2.jpg" alt="Youth Empowerment"
+            onerror="this.parentElement.innerHTML='<div class=\'blog-img-placeholder\'><i class=\'fa-solid fa-hands-holding-child\'></i></div>'">
+        </div>
+        <div class="blog-body">
+          <span class="blog-tag" style="background:#f0faf4;color:var(--green);border-color:#c8e6c9;">Youth &amp; Volunteers</span>
+          <h3>Empowering Youth &amp; Volunteers</h3>
+          <p>Our outreach events are more than medical camps — they are platforms for mentorship and youth empowerment. Volunteers engage with local children, distributing educational materials and inspiring a culture of giving. Through collaboration with the Ministry of Health, we build a healthier Uganda.</p>
+          <ul style="list-style:none;display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;">
+            <li style="font-size:0.76rem;font-weight:600;color:var(--green);background:#f2faf4;border:1px solid #c8e6c9;padding:3px 10px;border-radius:20px;">Youth Empowerment</li>
+            <li style="font-size:0.76rem;font-weight:600;color:var(--green);background:#f2faf4;border:1px solid #c8e6c9;padding:3px 10px;border-radius:20px;">Volunteer Stories</li>
+          </ul>
+          <div class="blog-meta-row">
+            <span><i class="fa-solid fa-calendar-days"></i> 02/11/2025</span>
+            <span><i class="fa-solid fa-users"></i> Volunteers &amp; Partners</span>
+          </div>
+          <a href="#" class="blog-read-more">Read full story <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Twitter Feed -->
+    <div class="blog-twitter-section" data-reveal>
+      <h3>Live From Our X (Twitter) Feed</h3>
+      <p class="blog-twitter-label">Real-time updates from the field</p>
+      <div class="twitter-grid">
+        <blockquote class="twitter-tweet"><p lang="en" dir="ltr">It&#39;s a Good Friday to reflect on the suffering of Christ for all Mankind, do you believe and accept his sacrifice he paid for you? <a href="https://twitter.com/WagumaAggrey?ref_src=twsrc%5Etfw">@WagumaAggrey</a> <a href="https://twitter.com/hashtag/HappyGoodFriday?src=hash&amp;ref_src=twsrc%5Etfw">#HappyGoodFriday</a></p>&mdash; Waguma Life Reach Uganda (@lifereachUg) <a href="https://twitter.com/lifereachUg/status/2040003820294382061?ref_src=twsrc%5Etfw">April 3, 2026</a></blockquote>
+        <blockquote class="twitter-tweet"><p lang="en" dir="ltr">A counselor from the <a href="https://twitter.com/uscrfuganda?ref_src=twsrc%5Etfw">@uscrfuganda</a> supporting a sickle cell warrior in Namutumba District. Now heading to Bugweri District — your support can change more lives. <a href="https://twitter.com/WagumaAggrey?ref_src=twsrc%5Etfw">@WagumaAggrey</a> <a href="https://twitter.com/hashtag/SickleCellAwareness?src=hash&amp;ref_src=twsrc%5Etfw">#SickleCellAwareness</a></p>&mdash; Waguma Life Reach Uganda (@lifereachUg) <a href="https://twitter.com/lifereachUg/status/2034560748571996377?ref_src=twsrc%5Etfw">March 19, 2026</a></blockquote>
+        <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Extending hands, changing lives. <a href="https://twitter.com/WagumaAggrey?ref_src=twsrc%5Etfw">@WagumaAggrey</a> <a href="https://twitter.com/hashtag/WagumaLifeReach?src=hash&amp;ref_src=twsrc%5Etfw">#WagumaLifeReach</a> <a href="https://twitter.com/hashtag/CharityInAction?src=hash&amp;ref_src=twsrc%5Etfw">#CharityInAction</a></p>&mdash; Waguma Life Outreach Uganda (@lifereachUg) <a href="https://twitter.com/lifereachUg/status/1966329160684679642?ref_src=twsrc%5Etfw">September 12, 2025</a></blockquote>
       </div>
-    </article>
+    </div>
   </div>
-
-  <div style="margin-bottom: 0; margin-top:0;">
-    <p class="blog-section-label">Live from our X (Twitter) feed</p>
-  <div class="embedpost" style="margin-bottom: 0;">
-    <blockquote class="twitter-tweet"><p lang="en" dir="ltr">It&#39;s a Good Friday to reflect on the suffering of Christ for all Mankind, do you believe and accept his sacrifice he paid for you? <a href="https://twitter.com/WagumaAggrey?ref_src=twsrc%5Etfw">@WagumaAggrey</a> <a href="https://twitter.com/hashtag/HappyGoodFriday?src=hash&amp;ref_src=twsrc%5Etfw">#HappyGoodFriday</a> <a href="https://t.co/V3jsIQnVQy">pic.twitter.com/V3jsIQnVQy</a></p>&mdash; Waguma Life Reach Uganda (@lifereachUg) <a href="https://twitter.com/lifereachUg/status/2040003820294382061?ref_src=twsrc%5Etfw">April 3, 2026</a></blockquote>
-    <blockquote class="twitter-tweet"><p lang="en" dir="ltr">A counselor from the <a href="https://twitter.com/uscrfuganda?ref_src=twsrc%5Etfw">@uscrfuganda</a> supporting a sickle cell warrior in Namutumba District.<br><br>Now heading to Bugweri District — your support can change more lives. <a href="https://twitter.com/WagumaAggrey?ref_src=twsrc%5Etfw">@WagumaAggrey</a> <a href="https://twitter.com/hashtag/SickleCellAwareness?src=hash&amp;ref_src=twsrc%5Etfw">#SickleCellAwareness</a> <a href="https://t.co/LS7lbpC5HV">pic.twitter.com/LS7lbpC5HV</a></p>&mdash; Waguma Life Reach Uganda (@lifereachUg) <a href="https://twitter.com/lifereachUg/status/2034560748571996377?ref_src=twsrc%5Etfw">March 19, 2026</a></blockquote>
-    <blockquote class="twitter-tweet" data-media-max-width="100%"><p lang="en" dir="ltr">Extending hands, changing lives. <a href="https://twitter.com/WagumaAggrey?ref_src=twsrc%5Etfw">@WagumaAggrey</a> <a href="https://twitter.com/hashtag/WagumaLifeReach?src=hash&amp;ref_src=twsrc%5Etfw">#WagumaLifeReach</a> <a href="https://twitter.com/hashtag/CharityInAction?src=hash&amp;ref_src=twsrc%5Etfw">#CharityInAction</a> <a href="https://t.co/VNIwl07aN5">pic.twitter.com/VNIwl07aN5</a></p>&mdash; Waguma Life Outreach Uganda (@lifereachUg) <a href="https://twitter.com/lifereachUg/status/1966329160684679642?ref_src=twsrc%5Etfw">September 12, 2025</a></blockquote>
-  </div>
-  </div>
-
-  
 </section>
-<!-- Blog Section End -->
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-
-
-<!-- Contact Us Section Start -->
- <!-- Contact Us Section Start -->
-<section id="contact-us" style="margin-bottom: 0;" style="margin-top: 0;;">
-  <div class="contact-container">
-    <h2>Contact Us</h2>
-    <p class="contact-desc">We'd love to hear from you! Reach out to us through any of the channels below.</p>
-
-    <div class="contact-details">
-      <div class="contact-item">
-        <i class="fa-solid fa-phone contact-icon" aria-hidden="true"></i>
-        <span class="contact-label">Airtel:</span>
-        <a href="tel:+256703204351" class="contact-link" aria-label="Call Airtel number +256 703 204351">+256 703 204351</a>
+<!-- ===== BLOG REDIRECT SECTION ===== -->
+<section class="section blog-redirect-section" id="featured-blog" data-reveal>
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-label">Our Stories</span>
+      <h2 class="section-title">Read More on Our Blog</h2>
+      <div class="divider"></div>
+      <p class="section-subtitle" style="margin-top:16px;">Deep insights into our missions, impact stories, and humanitarian work.</p>
+    </div>
+    <!-- Blog card that links to external blog -->
+    <div class="blog-redirect-card">
+      <div class="blog-redirect-content">
+        <h3>Explore Our Latest Stories</h3>
+        <p>Discover comprehensive articles about our medical outreach programs, youth empowerment initiatives, and community transformation stories from across Uganda.</p>
+        <div class="blog-features">
+          <div class="blog-feature-item">
+            <i class="fa-solid fa-stethoscope"></i>
+            <span>Medical Outreach Updates</span>
+          </div>
+          <div class="blog-feature-item">
+            <i class="fa-solid fa-users"></i>
+            <span>Youth Empowerment Stories</span>
+          </div>
+          <div class="blog-feature-item">
+            <i class="fa-solid fa-heart"></i>
+            <span>Community Impact Reports</span>
+          </div>
+        </div>
+        <!-- Link to external blog -->
+        <a href="https://katoemmanganda.blogspot.com/2026/04/kato.html" target="_blank" rel="noopener" class="btn-visit-blog">
+          Visit Our Blog <i class="fa-solid fa-arrow-right"></i>
+        </a>
       </div>
-      <div class="contact-item">
-        <i class="fa-solid fa-phone contact-icon" aria-hidden="true"></i>
-        <span class="contact-label">MTN:</span>
-        <a href="tel:+256784512521" class="contact-link" aria-label="Call MTN number +256 784 512521">+256 784 512521</a>
+      <div class="blog-redirect-image">
+        <div class="blog-image-placeholder">
+          <img src="ds10.jpg.jpeg " style="width:100%;height:100%;object-fit:cover;border-radius:16px;" alt="Blog preview image" onerror="this.src=''; this.style='background:linear-gradient(135deg,#e8f5e9,#c8e6c9); border-radius:16px;'">
+        </div>
       </div>
-      <div class="contact-item">
-        <i class="fa-solid fa-envelope contact-icon" aria-hidden="true"></i>
-        <span class="contact-label">Email:</span>
-        <a href="mailto:wagumalifereachuganda@gmail.com" class="contact-link" aria-label="Send email to Waguma Life Reach Uganda">wagumalifereachuganda@gmail.com</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="section" id="contact">
+  <div class="section-inner">
+    <div class="section-header" data-reveal>
+      <span class="section-label">Get In Touch</span>
+      <h2 class="section-title">Contact Us</h2>
+      <div class="divider"></div>
+      <p class="section-subtitle" style="margin-top:16px;">We'd love to hear from you — whether you want to donate, volunteer, or partner with us.</p>
+    </div>
+    <div class="contact-grid">
+      <div data-reveal="left">
+        <span class="section-label">Reach Us Directly</span>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;margin-top:8px;">We're Here to Help</h3>
+        <ul class="contact-info-list"> 
+          <li class="contact-info-item">
+            <div class="contact-icon-wrap"><i class="fa-solid fa-phone"></i></div>
+            <div>
+              <strong>Airtel (Primary)</strong>
+              <a href="tel:+256703204351">+256 703 204 351</a>
+            </div>
+          </li>
+          <li class="contact-info-item">
+            <div class="contact-icon-wrap"><i class="fa-solid fa-phone"></i></div>
+            <div>
+              <strong>MTN</strong>
+              <a href="tel:+256784512521">+256 784 512 521</a>
+            </div>
+          </li>
+          <li class="contact-info-item">
+            <div class="contact-icon-wrap"><i class="fa-solid fa-envelope"></i></div>
+            <div>
+              <strong>Email</strong>
+              <a href="mailto:wagumalifereachuganda@gmail.com">wagumalifereachuganda@gmail.com</a>
+            </div>
+          </li>
+          <li class="contact-info-item">
+            <div class="contact-icon-wrap" style="background:#e8f5e3;color:#25D366;"><i class="fa-brands fa-whatsapp"></i></div>
+            <div>
+              <strong>WhatsApp</strong>
+              <a href="https://wa.me/256703204351" target="_blank" rel="noopener">Chat with us on WhatsApp</a>
+            </div>
+          </li>
+          <li class="contact-info-item">
+            <div class="contact-icon-wrap"><i class="fa-solid fa-location-dot"></i></div>
+            <div>
+              <strong>Location</strong>
+              <span>Uganda</span>
+            </div>
+          </li>
+        </ul>
+        <a href="https://wa.me/256703204351" target="_blank" rel="noopener" class="whatsapp-big-btn">
+          <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+        </a>
+        <div class="contact-socials" role="navigation" aria-label="Social media">
+          <a href="https://www.facebook.com/WagumaLifeReachUgand/" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://x.com/lifereachUg" target="_blank" rel="noopener" class="social-btn" aria-label="X/Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://www.instagram.com/wagumalifereachuganda/" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" target="_blank" rel="noopener" class="social-btn" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="mailto:wagumalifereachuganda@gmail.com" class="social-btn" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        </div>
       </div>
-      <div class="contact-item">
-        <i class="fa-brands fa-whatsapp contact-icon" aria-hidden="true"></i>
-        <span class="contact-label">WhatsApp:</span>
-        <a href="https://wa.me/256703204351" target="_blank" rel="noopener noreferrer" class="contact-link whatsapp-btn" aria-label="Chat with us on WhatsApp">
-          <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Chat on WhatsApp
+      <div data-reveal="right">
+        <div class="contact-form-card">
+          <h3>Send Us a Message</h3>
+          <p>Have a question or want to partner with us? Fill out the form below.</p>
+          <!-- Contact form that sends emails to both addresses using FormSubmit.co -->
+          <form action="https://formsubmit.co/wagumalifereachuganda@gmail.com" method="POST" id="contactForm">
+            <!-- Disable captcha for cleaner UX -->
+            <input type="hidden" name="_captcha" value="false">
+            
+            <div class="form-field">
+              <label for="cf-name">Full Name</label>
+              <input type="text" id="cf-name" name="Full Name" placeholder="Your full name" required>
+            </div>
+            <div class="form-field">
+              <label for="cf-email">Email Address</label>
+              <input type="email" id="cf-email" name="Email" placeholder="your@email.com" required>
+            </div>
+            <div class="form-field">
+              <label for="cf-subject">Subject</label>
+              <select id="cf-subject" name="Subject" required>
+                <option value="">Select a subject</option>
+                <option value="I want to Donate">I want to Donate</option>
+                <option value="I want to Volunteer">I want to Volunteer</option>
+                <option value="Partnership Inquiry">Partnership Inquiry</option>
+                <option value="Medical Camp Information">Medical Camp Information</option>
+                <option value="General Inquiry">General Inquiry</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="cf-message">Message</label>
+              <textarea id="cf-message" name="Message" placeholder="Tell us more..." required></textarea>
+            </div>
+            <button type="submit" class="btn-submit">
+              <i class="fa-solid fa-paper-plane"></i> &nbsp;Send Message
+            </button>
+            <!-- Success message (shown after submission) -->
+            <div id="contactSuccess" style="display:none;margin-top:14px;background:#f0faf4;border:1px solid #c8e6c9;border-radius:10px;padding:12px 16px;color:var(--green-dark);font-size:0.9rem;font-weight:500;">
+              <i class="fa-solid fa-circle-check"></i> &nbsp;Thank you! Your message has been sent successfully. We'll get back to you soon.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DONATE MODAL ===== -->
+<div class="modal fade" id="donateModal" tabindex="-1" aria-labelledby="donateModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-donate">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="donateModalLabel">
+          <img src="logo.png" alt="Logo" style="width:30px;height:30px;border-radius:50%;margin-right:10px;vertical-align:middle;">
+          Support Waguma Life Outreach Uganda
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="padding:28px;">
+        <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:20px;text-align:center;">Every contribution helps us reach more lives. Choose your preferred payment method:</p>
+        <div class="donate-method">
+          <div class="donate-method-icon airtel"><i class="fa-solid fa-mobile-screen"></i></div>
+          <div>
+            <div class="donate-method-label">Airtel Money</div>
+            <div class="donate-method-number">+256 703 204 351</div>
+            <div class="donate-method-name">AGGREY WAGUMA</div>
+          </div>
+        </div>
+        <div class="donate-method">
+          <div class="donate-method-icon mtn"><i class="fa-solid fa-mobile-screen"></i></div>
+          <div>
+            <div class="donate-method-label">MTN Mobile Money</div>
+            <div class="donate-method-number">+256 784 512 521</div>
+            <div class="donate-method-name">AGGREY WAGUMA</div>
+          </div>
+        </div>
+        <div class="donate-method">
+          <div class="donate-method-icon bank"><i class="fa-solid fa-building-columns"></i></div>
+          <div>
+            <div class="donate-method-label">Bank Transfer</div>
+            <div class="donate-method-number">Contact Us for Details</div>
+            <div class="donate-method-name">Account details on request</div>
+          </div>
+        </div>
+        <div class="donate-note">
+          <i class="fa-solid fa-heart" style="color:var(--red);margin-right:6px;"></i>
+          Your generosity brings healing, hope, and humanity to Uganda's communities.<br>
+          <strong>Thank you for giving!</strong>
+        </div>
+      </div>
+      <div class="modal-footer" style="border:none;padding-top:0;">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <a href="https://wa.me/256703204351?text=I%20want%20to%20donate%20to%20Waguma%20Life%20Outreach" target="_blank" class="btn" style="background:var(--green);color:white;">
+          <i class="fa-brands fa-whatsapp"></i> Confirm via WhatsApp
         </a>
       </div>
     </div>
-
-    <div class="contact-social" role="navigation" aria-label="Social media links">
-      <span class="contact-social-label">Connect with us:</span>
-      <a href="https://www.facebook.com/WagumaLifeReachUgand/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook" aria-hidden="true"></i></a>
-      <a href="https://x.com/lifereachUg" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
-      <a href="https://www.instagram.com/wagumalifereachuganda/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
-      <a href="mailto:wagumalifereachuganda@gmail.com" aria-label="Email us"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
-      <a href="#" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
-    </div>
-  </div>
-</section>
-<!-- Contact Us Section End -->
-
-<!-- Contact Us Section End -->
-
-<!-- Place this just before </body> -->
-<div class="modal fade" id="donateModal" tabindex="-1" aria-labelledby="donateModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header" style="background: linear-gradient(90deg, #008000 60%, #00bfff 100%); color: #fff;">
-        <h5 class="modal-title" id="donateModalLabel">
-          <img src="logo.png" alt="Logo" style="width:32px; height:32px; margin-right:10px; vertical-align:middle;">
-          Support Waguma Life Outreach UG
-        </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="mb-3">
-          <div class="alert alert-success">
-            <strong>Airtel Money:</strong> <span>+256703204351 (AGGREY WAGUMA)</span>
-          </div>
-          <div class="alert alert-warning">
-            <strong>MTN Mobile Money:</strong> <span>+256784512521 (AGGREY WAGUMA)</span>
-          </div>
-          <div class="alert alert-primary">
-            <strong>Bank Transfer:</strong> <span>******************</span>
-          </div>
-        </div>
-        <div class="mb-3">
-          <small class="text-muted">Your support helps us reach more lives. Thank you!</small>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
   </div>
 </div>
 
-<footer class="site-footer">
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer" role="contentinfo">
   <div class="footer-main">
-    <div class="footer-brand">
-      <img src="logo.png" alt="Waguma Life Logo" class="footer-logo">
-      <span class="footer-title">WAGUMA LIFE OUTREACH UG</span>
-      <p class="footer-slogan">Healing, Hope, and Humanity</p>
+    <div>
+      <img src="logo.png" alt="Waguma Life Logo" class="footer-brand-logo">
+      <div class="footer-brand-name">WAGUMA LIFE OUTREACH UG</div>
+      <div class="footer-brand-tagline">Healing, Hope, and Humanity</div>
+      <p class="footer-brand-desc">A non-profit organization dedicated to improving the lives of vulnerable communities across Uganda through medical outreach, youth empowerment, and humanitarian support.</p>
+      <div class="footer-socials" style="margin-top:20px;">
+        <a href="https://www.facebook.com/WagumaLifeReachUgand/" target="_blank" rel="noopener" class="footer-social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://x.com/lifereachUg" target="_blank" rel="noopener" class="footer-social-btn" aria-label="X/Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.instagram.com/wagumalifereachuganda/" target="_blank" rel="noopener" class="footer-social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://wa.me/256703204351" target="_blank" rel="noopener" class="footer-social-btn" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="#" target="_blank" rel="noopener" class="footer-social-btn" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+      </div>
     </div>
-    <div class="footer-contact">
-      <h4>Contact</h4>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
       <ul>
-        <li><i class="fa-solid fa-phone"></i> Airtel: <a href="tel:+256703204351">+256 703 204351</a></li>
-        <li><i class="fa-solid fa-phone"></i> MTN: <a href="tel:+256784512521">+256 784 512521</a></li>
-        <li><i class="fa-solid fa-envelope"></i> <a href="mailto:wagumalifereachuganda@gmail.com">wagumalifereachuganda@gmail.com</a></li>
-        <li><i class="fa-brands fa-whatsapp"></i> <a href="https://wa.me/256703204351" target="_blank">WhatsApp</a></li>
+        <li><a href="#home"><i class="fa-solid fa-chevron-right"></i> Home</a></li>
+        <li><a href="#about"><i class="fa-solid fa-chevron-right"></i> About Us</a></li>
+        <li><a href="#causes"><i class="fa-solid fa-chevron-right"></i> Our Causes</a></li>
+        <li><a href="#blog"><i class="fa-solid fa-chevron-right"></i> Blog</a></li>
+        <li><a href="gallery.html"><i class="fa-solid fa-chevron-right"></i> Gallery</a></li>
+        <li><a href="#contact"><i class="fa-solid fa-chevron-right"></i> Contact</a></li>
       </ul>
     </div>
-    <div class="footer-social">
-      <h4>Follow Us</h4>
-      <a href="https://www.facebook.com/WagumaLifeReachUgand/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-      <a href="https://x.com/lifereachUg" target="_blank"><i class="fa-brands fa-twitter"></i></a>
-      <a href="https://www.instagram.com/wagumalifereachuganda/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+    <div class="footer-col">
+      <h4>Our Programs</h4>
+      <ul>
+        <li><a href="#causes"><i class="fa-solid fa-chevron-right"></i> Medical Camps</a></li>
+        <li><a href="#causes"><i class="fa-solid fa-chevron-right"></i> Youth Empowerment</a></li>
+        <li><a href="#causes"><i class="fa-solid fa-chevron-right"></i> Humanitarian Aid</a></li>
+        <li><a href="#causes"><i class="fa-solid fa-chevron-right"></i> SRHR Education</a></li>
+        <li><a href="#causes"><i class="fa-solid fa-chevron-right"></i> Mentorship</a></li>
+        <li><a href="#causes"><i class="fa-solid fa-chevron-right"></i> Partnerships</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:+256703204351"><i class="fa-solid fa-phone"></i> +256 703 204 351 (Airtel)</a></li>
+        <li><a href="tel:+256784512521"><i class="fa-solid fa-phone"></i> +256 784 512 521 (MTN)</a></li>
+        <li><a href="mailto:wagumalifereachuganda@gmail.com"><i class="fa-solid fa-envelope"></i> Email Us</a></li>
+        <li><a href="https://wa.me/256703204351" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a></li>
+        <li><a href="#" data-bs-toggle="modal" data-bs-target="#donateModal"><i class="fa-solid fa-heart"></i> Donate Now</a></li>
+      </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <p>&copy; 2026 Waguma Life Outreach UG. All rights reserved.</p>
+    <span>&copy; 2026 Waguma Life Outreach Uganda. All rights reserved.</span>
+    
+    <a href="#home">Back to top <i class="fa-solid fa-arrow-up"></i></a>
   </div>
 </footer>
 
+<!-- ===== BACK TO TOP ===== -->
+<button id="backTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  /* ── HERO SLIDER ── */
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots = document.querySelectorAll('.hero-dot');
+  let current = 0, timer;
+
+  function showSlide(n) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+  function startAuto() {
+    clearInterval(timer);
+    timer = setInterval(() => showSlide(current + 1), 5000);
+  }
+  document.getElementById('heroPrev').onclick = () => { showSlide(current - 1); startAuto(); };
+  document.getElementById('heroNext').onclick = () => { showSlide(current + 1); startAuto(); };
+  dots.forEach((d, i) => d.onclick = () => { showSlide(i); startAuto(); });
+  startAuto();
+
+  /* ── HAMBURGER ── */
+  const hamburger = document.getElementById('hamburgerBtn');
+  const navLinks = document.getElementById('navLinks');
+  hamburger.onclick = () => {
+    navLinks.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', navLinks.classList.contains('open'));
+  };
+  navLinks.querySelectorAll('a').forEach(a => a.onclick = () => navLinks.classList.remove('open'));
+
+  /* ── ABOUT READ MORE ── */
+  const readMoreBtn = document.getElementById('readMoreBtn');
+  const aboutMore = document.getElementById('aboutMore');
+  const readMoreText = document.getElementById('readMoreText');
+  const readMoreIcon = document.getElementById('readMoreIcon');
+  readMoreBtn.onclick = () => {
+    const open = aboutMore.style.display === 'block';
+    aboutMore.style.display = open ? 'none' : 'block';
+    readMoreText.textContent = open ? 'Read More' : 'Read Less';
+    readMoreIcon.className = open ? 'fa-solid fa-arrow-right' : 'fa-solid fa-arrow-up';
+  };
+
+  /* ── SCROLL REVEAL ── */
+  const revealEls = document.querySelectorAll('[data-reveal]');
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('revealed'), i * 80);
+        revealObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => revealObs.observe(el));
+
+  /* ── COUNT UP ANIMATION ── */
+  const countEls = document.querySelectorAll('[data-count]');
+  const countObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const target = +e.target.dataset.count;
+        const suffix = target >= 1000 ? '+' : target > 10 ? '+' : '';
+        let count = 0;
+        const step = Math.ceil(target / 60);
+        const interval = setInterval(() => {
+          count = Math.min(count + step, target);
+          e.target.textContent = count.toLocaleString() + suffix;
+          if (count >= target) clearInterval(interval);
+        }, 25);
+        countObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  countEls.forEach(el => countObs.observe(el));
+
+  /* ── BACK TO TOP ── */
+  const backTop = document.getElementById('backTop');
+  window.addEventListener('scroll', () => {
+    backTop.classList.toggle('visible', window.scrollY > 400);
+  });
+  backTop.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  /* ── CONTACT FORM ── */
+  document.getElementById('contactSubmit').onclick = function() {
+    const name = document.getElementById('cf-name').value.trim();
+    const email = document.getElementById('cf-email').value.trim();
+    const message = document.getElementById('cf-message').value.trim();
+    if (!name || !email || !message) {
+      alert('Please fill in your name, email, and message.');
+      return;
+    }
+    document.getElementById('contactSuccess').style.display = 'block';
+    document.getElementById('cf-name').value = '';
+    document.getElementById('cf-email').value = '';
+    document.getElementById('cf-subject').value = '';
+    document.getElementById('cf-message').value = '';
+    setTimeout(() => { document.getElementById('contactSuccess').style.display = 'none'; }, 5000);
+  };
+
+  /* ── ACTIVE NAV LINK on scroll ── */
+  const sections = document.querySelectorAll('section[id], .hero[id]');
+  const navALinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 100) current = sec.id;
+    });
+    navALinks.forEach(a => {
+      a.classList.remove('active');
+      if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+    });
+  }, { passive: true });
+</script>
+
+<!-- External JavaScript -->
 <script src="script.js"></script>
+
 </body>
-
 </html>
-
-
-
-

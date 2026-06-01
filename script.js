@@ -1,125 +1,236 @@
-// Banner slider logic
-const bannerImages = [
-    'ds34.jpg.jpeg',
-    'ds10.jpg.jpeg',
-    'ds4.jpg.jpeg',
-    'ds30.jpg.jpeg',
-];
+/* ===== HAMBURGER MENU FUNCTIONALITY ===== */
+// Get hamburger button and navigation links from DOM
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const navLinks = document.getElementById('navLinks');
 
-let currentBanner = 0;
-let bannerInterval = null;
-
-// Create image elements dynamically
-function showBannerImage(index) {
-    let container = document.querySelector('.banner-container');
-    let oldImg = container.querySelector('img');
-    if (oldImg) oldImg.remove();
-
-    let img = document.createElement('img');
-    img.src = bannerImages[index];
-    img.alt = "Charity Project Banner";
-    img.style.opacity = 0;
-    container.insertBefore(img, container.firstChild);
-
-    setTimeout(() => { img.style.opacity = 1; }, 50);
+// Add click handler to hamburger button
+if (hamburgerBtn) {
+  hamburgerBtn.addEventListener('click', () => {
+    // Toggle 'open' class on nav-links to show/hide menu
+    navLinks.classList.toggle('open');
+    // Update ARIA attribute for accessibility
+    hamburgerBtn.setAttribute('aria-expanded', navLinks.classList.contains('open'));
+  });
+  
+  // Close menu when a link is clicked
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      hamburgerBtn.setAttribute('aria-expanded', false);
+    });
+  });
 }
 
-// Slide automatically every 3 seconds
-function startBannerAutoSlide() {
-    if (bannerInterval) clearInterval(bannerInterval);
-    bannerInterval = setInterval(() => {
-        currentBanner = (currentBanner + 1) % bannerImages.length;
-        showBannerImage(currentBanner);
-    }, 3000);
+/* ===== HERO CAROUSEL FUNCTIONALITY ===== */
+// Get all carousel elements
+const heroSlides = document.querySelectorAll('.hero-slide');
+const heroDots = document.querySelectorAll('.hero-dot');
+const heroPrevBtn = document.getElementById('heroPrev');
+const heroNextBtn = document.getElementById('heroNext');
+
+// Initialize carousel variables
+let heroIndex = 0;
+let heroInterval;
+
+// Function to show a specific slide
+function showHeroSlide(n) {
+  // Remove 'active' class from all slides and dots
+  heroSlides.forEach(slide => slide.classList.remove('active'));
+  heroDots.forEach(dot => dot.classList.remove('active'));
+  // Add 'active' class to current slide and dot
+  heroSlides[n].classList.add('active');
+  heroDots[n].classList.add('active');
 }
 
-// Initial banner
-document.addEventListener('DOMContentLoaded', function() {
-    showBannerImage(currentBanner);
-    startBannerAutoSlide();
+// Function to move to next slide
+function nextHeroSlide() {
+  heroIndex = (heroIndex + 1) % heroSlides.length;
+  showHeroSlide(heroIndex);
+  resetHeroInterval();
+}
 
-    document.getElementById('bannerPrev').onclick = function() {
-        currentBanner = (currentBanner - 1 + bannerImages.length) % bannerImages.length;
-        showBannerImage(currentBanner);
-        startBannerAutoSlide();
-    };
-    document.getElementById('bannerNext').onclick = function() {
-        currentBanner = (currentBanner + 1) % bannerImages.length;
-        showBannerImage(currentBanner);
-        startBannerAutoSlide();
-    };
+// Function to move to previous slide
+function prevHeroSlide() {
+  heroIndex = (heroIndex - 1 + heroSlides.length) % heroSlides.length;
+  showHeroSlide(heroIndex);
+  resetHeroInterval();
+}
 
-    const readMoreLink = document.getElementById('about-read-more');
-    if (readMoreLink) {
-        readMoreLsink.addEventListener('click', function(event) {
-            event.preventDefault();
-            const more = document.getElementById('about-more');
-            if (more) {
-                if (more.style.display === 'none' || more.style.display === '') {
-                    more.style.display = 'block';
-                    readMoreLink.textContent = 'Read less';
-                } else {
-                    more.style.display = 'none';
-                    readMoreLink.textContent = 'Read more';
-                }
-            }
-        });
+// Function to reset the auto-rotate interval
+function resetHeroInterval() {
+  clearInterval(heroInterval);
+  heroInterval = setInterval(nextHeroSlide, 5000);
+}
+
+// Add event listeners to carousel controls
+if (heroPrevBtn && heroNextBtn) {
+  heroPrevBtn.addEventListener('click', prevHeroSlide);
+  heroNextBtn.addEventListener('click', nextHeroSlide);
+  // Add click handlers to dots for direct slide selection
+  heroDots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      heroIndex = i;
+      showHeroSlide(i);
+      resetHeroInterval();
+    });
+  });
+  // Start auto-rotation (5 second interval)
+  heroInterval = setInterval(nextHeroSlide, 5000);
+}
+
+/* ===== STATISTICS COUNTER ANIMATION ===== */
+// Function to animate numbers when stats section comes into view
+function animateCounter() {
+  const statNums = document.querySelectorAll('.stat-num');
+  statNums.forEach(num => {
+    const target = parseInt(num.dataset.count);
+    const duration = 2000; // Animation duration in milliseconds
+    const start = 0;
+    const increment = target / (duration / 16); // Calculate increment per frame
+    let current = start;
+
+    // Animation function using requestAnimationFrame
+    const update = () => {
+      current += increment;
+      if (current >= target) {
+        // Stop at target value
+        num.textContent = target.toLocaleString();
+      } else {
+        // Update display with current value
+        num.textContent = Math.floor(current).toLocaleString();
+        // Continue animation
+        requestAnimationFrame(update);
+      }
+    };
+    update();
+  });
+}
+
+// Intersection Observer to trigger counter when stats section is visible
+const statsStrip = document.querySelector('.stats-strip');
+if (statsStrip) {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounter();
+        // Unobserve after animation starts
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  observer.observe(statsStrip);
+}
+
+/* ===== READ MORE FUNCTIONALITY ===== */
+// Get read more button and hidden content
+const readMoreBtn = document.getElementById('readMoreBtn');
+const aboutMore = document.getElementById('aboutMore');
+const readMoreText = document.getElementById('readMoreText');
+const readMoreIcon = document.getElementById('readMoreIcon');
+
+// Toggle read more/less content
+if (readMoreBtn) {
+  readMoreBtn.addEventListener('click', () => {
+    const isShown = aboutMore.style.display === 'block';
+    // Toggle display
+    aboutMore.style.display = isShown ? 'none' : 'block';
+    // Update button text
+    readMoreText.textContent = isShown ? 'Read More' : 'Read Less';
+    // Rotate arrow icon
+    readMoreIcon.style.transform = isShown ? 'rotate(0deg)' : 'rotate(180deg)';
+    readMoreIcon.style.transition = 'transform 0.3s ease';
+  });
+}
+
+/* ===== SCROLL REVEAL ANIMATIONS ===== */
+// Get all elements that should reveal on scroll
+const revealElements = document.querySelectorAll('[data-reveal]');
+
+// Intersection Observer for scroll animations
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      // Add 'revealed' class to trigger animation
+      entry.target.classList.add('revealed');
+      // Stop observing this element
+      revealObserver.unobserve(entry.target);
     }
-});
+  });
+}, { threshold: 0.15 });
 
-// Show More / Show Less Functionality on the causes section for mobile devices
-  document.addEventListener('DOMContentLoaded', function() {
-    const causesCards = document.querySelector('.causes-cards');
-    const isMobile = window.innerWidth <= 640;
+// Start observing all reveal elements
+revealElements.forEach(el => revealObserver.observe(el));
 
-    if (isMobile) {
-      // Create wrapper and button
-      const wrapper = document.createElement('div');
-      wrapper.className = 'show-btn-wrapper';
-      
-      const showMoreBtn = document.createElement('button');
-      showMoreBtn.className = 'show-more-btn';
-      showMoreBtn.textContent = '+ Show More Causes';
-      showMoreBtn.setAttribute('aria-expanded', 'false');
-      showMoreBtn.setAttribute('type', 'button');
-      
-      wrapper.appendChild(showMoreBtn);
-      causesCards.appendChild(wrapper);
+/* ===== BACK TO TOP BUTTON ===== */
+const backTopBtn = document.getElementById('backTop');
 
-      let isExpanded = false;
-
-      showMoreBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        isExpanded = !isExpanded;
-        
-        if (isExpanded) {
-          causesCards.classList.add('show-all');
-          showMoreBtn.textContent = '- Show Less Causes';
-          showMoreBtn.setAttribute('aria-expanded', 'true');
-          showMoreBtn.style.background = 'linear-gradient(135deg, #c62828 0%, #a01e1e 100%)';
-        } else {
-          causesCards.classList.remove('show-all');
-          showMoreBtn.textContent = '+ Show More Causes';
-          showMoreBtn.setAttribute('aria-expanded', 'false');
-          showMoreBtn.style.background = 'linear-gradient(135deg, #0f7b3f 0%, #0d5f32 100%)';
-          
-          // Smooth scroll to the top of the section
-          setTimeout(() => {
-            document.getElementById('causes').scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }, 200);
-        }
-      });
+if (backTopBtn) {
+  // Show/hide button based on scroll position
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      backTopBtn.classList.add('visible');
+    } else {
+      backTopBtn.classList.remove('visible');
     }
   });
 
-//modal code
-function showPaymentDetails(method) {
-  const details = {
-    airtel: `<div class="alert alert-success mb-0"><strong>Airtel Money:</strong> Send to <b>+256703204351</b></div>`,
-    mtn: `<div class="alert alert-warning mb-0"><strong>MTN Mobile Money:</strong> Send to <b>+256784512521</b></div>`,
-    bank: `<div class="alert alert-primary mb-0"><strong>Bank Transfer:</strong> Account No. <b>4325637345</b></div>`
-  };
-  document.getElementById('paymentDetails').style.display = 'block';
-  document.getElementById('paymentDetails').innerHTML = details[method];
+  // Smooth scroll to top when clicked
+  backTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
 
+/* ===== ACTIVE NAVIGATION LINK ON SCROLL ===== */
+// Get all navigation links
+const navLinks_ = document.querySelectorAll('.nav-links a');
+
+// Update active link as user scrolls
+window.addEventListener('scroll', () => {
+  let current = '';
+  // Get all sections with IDs
+  const sections = document.querySelectorAll('section, [id]');
+  
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop;
+    // If section is in viewport, mark as current
+    if (pageYOffset >= sectionTop - 200) {
+      current = section.getAttribute('id');
+    }
+  });
+
+  // Update active link styling
+  navLinks_.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href').slice(1) === current) {
+      link.classList.add('active');
+    }
+  });
+});
+
+/* ===== SMOOTH SCROLL FOR ANCHOR LINKS ===== */
+// Add smooth scroll behavior to all anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    const href = this.getAttribute('href');
+    // Only smooth scroll if target exists
+    if (href !== '#' && document.querySelector(href)) {
+      e.preventDefault();
+      document.querySelector(href).scrollIntoView({
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+
+/* ===== CONTACT FORM SUBMISSION HANDLING ===== */
+// Get contact form element
+const contactForm = document.getElementById('contactForm');
+
+// Handle form submission (FormSubmit.co handles email automatically)
+if (contactForm) {
+  contactForm.addEventListener('submit', function(e) {
+    // Form will be submitted to FormSubmit.co
+    // They handle sending emails to the configured recipients
+    // This is handled automatically by the form action attribute
+  });
 }
